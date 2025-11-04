@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PLANUM GROUP</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <!-- 🔹 NAVIGATION BAR -->
+<header class="navbar">
+  <div class="logo">PLANUM GROUP</div>
+  <nav>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+
+      <!-- DROPDOWN PROJECTS -->
+      <li class="dropdown">
+        <a href="#">Projects ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Residential</a></li>
+          <li><a href="#">Commercial</a></li>
+          <li><a href="#">Hospitals</a></li>
+          <li><a href="#">Malls</a></li>
+        </ul>
+      </li>
+
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+
+
+  <!-- 🔹 HERO SECTION -->
+  <section class="modern-hero light-theme">
+    <div class="hero-left">
+
+      <!-- Architectural Lines -->
+      <div class="architect-lines">
+        <div class="horizontal-line"></div>
+        <div class="vertical-line"></div>
+      </div>
+
+      <!-- Hero Text -->
+      <div class="hero-text">
+        <h1 class="brand-name">PLANUM GROUP</h1>
+        <h2 class="main-heading">
+          <span class="highlight">Designing</span> spaces for tomorrow.
+        </h2>
+        <p class="description">
+          PLANUM GROUP has been shaping skylines since 1996 with over 500+ completed projects across residential, commercial, malls, and hospitals.
+        </p>
+        <a href="projects" class="hero-button">Explore Our Work →</a>
+      </div>
+    </div>
+
+    <!-- Right Side Slideshow -->
+    <div class="hero-right">
+      <div class="slideshow">
+        <img src="assets/img/project1.jpg" class="slide active" alt="Slide 1" />
+        <img src="assets/img/project2.jpg" class="slide" alt="Slide 2" />
+        <img src="assets/img/project3.jpg" class="slide" alt="Slide 3" />
+      </div>
+    </div>
+  </section>
+
+      <!-- 🔹 PROJECTS SECTION (on same page) -->
+<section id="projects" class="projects-container">
+  <h1 class="page-title">Our Projects</h1>
+
+  <div class="project">
+    <img src="assets/img/project1.jpg" alt="Project 1" class="project-image">
+    <div class="project-content">
+      <h2>Residential Complex – Lakshmi Enclave</h2>
+      <p>
+        A high-end 150-unit residential development in Hyderabad featuring sustainable architecture, green balconies, and cutting-edge amenities.
+      </p>
+    </div>
+  </div>
+
+  <div class="project reverse">
+    <img src="assets/img/project2.jpg" alt="Project 2" class="project-image">
+    <div class="project-content">
+      <h2>Commercial Hub – Sita Square</h2>
+      <p>
+        A multi-use commercial space designed for corporate offices and showrooms. Sleek façade, energy-efficient glass cladding, and bold geometry.
+      </p>
+    </div>
+  </div>
+
+  <div class="project">
+    <img src="assets/img/project3.jpg" alt="Project 3" class="project-image">
+    <div class="project-content">
+      <h2>Healthcare Facility – GreenMed Hospital</h2>
+      <p>
+        200-bed medical facility with high-tech surgical blocks, landscaped courtyards, and modular design prioritizing patient comfort.
+      </p>
+    </div>
+  </div>
+</section>
+
+  <!-- Slideshow Script -->
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    let current = 0;
+
+    function showNextSlide() {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+    }
+
+    setInterval(showNextSlide, 4000); // 4 seconds per slide
+  </script>
+
+</body>
+</html>
