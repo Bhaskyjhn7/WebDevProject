@@ -3,68 +3,94 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PLANUM GROUP – Dark Version</title>
+  <title>PLANUM GROUP – Dark Cinematic Version</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
   <style>
     body { font-family: 'Playfair Display', serif; background: linear-gradient(to bottom, #0F172A, #1E293B); color: #F3EDE3; }
-    .hero-title span { display: inline-block; opacity: 0; transform: translateY(40px) scale(0.8); }
-    .section-title { border-left: 4px solid #D4A373; padding-left: 0.5rem; color: #F3EDE3; }
+    .section-title { color: #F3EDE3; border-left: 4px solid #D4A373; padding-left: 0.5rem; }
+    .hero-image { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.2s ease-in-out, transform 10s ease-in-out; transform: scale(1.05); }
+    .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: transparent; z-index: 1; pointer-events: none; }
+    .project-slider { position: relative; width: 100%; height: 22rem; border-radius: 0.75rem; overflow: hidden; box-shadow: 0 25px 50px rgba(15, 23, 42, 0.45); background: #1E293B; isolation: isolate; }
+    .project-slider::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 20% 20%, rgba(236, 233, 227, 0.08), transparent 45%), radial-gradient(circle at 80% 80%, rgba(12, 17, 32, 0.55), transparent 55%); mix-blend-mode: screen; pointer-events: none; transition: opacity 1s ease-in-out; opacity: 0.4; }
+    .project-slider:hover::after { opacity: 0.25; }
+    .project-slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.05); transition: opacity 1.1s ease-in-out, transform 12s ease-in-out; }
+    .project-slide.active { opacity: 1; transform: scale(1.15); }
+    .project-slider.empty::after { display: none; }
+    .project-slider__fallback { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; color: #94A3B8; font-size: 0.95rem; letter-spacing: 0.18em; text-transform: uppercase; background: rgba(15, 23, 42, 0.6); }
+    @media (max-width: 768px) {
+      .project-slider { height: 18rem; }
+    }
     input, textarea { background-color: #1E293B; color: #F3EDE3; border: 1px solid #374151; }
   </style>
 </head>
 <body class="overflow-x-hidden">
   <!-- Header -->
-  <header id="header" class="fixed top-0 left-0 w-full bg-[#1E293B]/80 backdrop-blur-md z-20 shadow-sm">
+  <header id="header" class="fixed top-0 left-0 w-full bg-[#0F172A]/80 backdrop-blur-md z-20 shadow-lg">
     <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
-      <h1 class="text-2xl font-bold text-[#F3EDE3]">PLANUM GROUP</h1>
+      <h1 class="text-2xl font-bold text-[#D4A373]">PLANUM GROUP</h1>
       <nav>
         <ul class="flex space-x-8 text-lg">
-          <li><a href="#hero" class="hover:text-[#D4A373]">Home</a></li>
-          <li><a href="#projects" class="hover:text-[#D4A373]">Projects</a></li>
-          <li><a href="#about" class="hover:text-[#D4A373]">About</a></li>
-          <li><a href="#contact" class="hover:text-[#D4A373]">Contact Us</a></li>
+          <li><a href="#hero" class="hover:text-[#D4A373] transition">Home</a></li>
+          <li><a href="#projects" class="hover:text-[#D4A373] transition">Projects</a></li>
+          <li><a href="#about" class="hover:text-[#D4A373] transition">About</a></li>
+          <li><a href="#contact" class="hover:text-[#D4A373] transition">Contact Us</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <!-- Hero -->
-  <section id="hero" class="h-screen flex flex-col justify-center items-center text-center px-4 relative overflow-hidden">
-    <h2 class="hero-title text-6xl md:text-7xl font-extrabold mb-4" data-aos="fade-up">PLANUM GROUP</h2>
-    <p class="text-xl md:text-2xl text-[#D4A373] font-medium mb-4" data-aos="fade-up" data-aos-delay="200">Building spaces that inspire and endure.</p>
-    <p class="max-w-2xl mx-auto text-lg text-gray-300 mb-8" data-aos="fade-up" data-aos-delay="400">
-      Since 1996, we have shaped skylines with thoughtful design and precision — delivering over 500 projects across residential, commercial, retail, and healthcare spaces.
-    </p>
-    <button class="bg-[#D4A373] text-[#0F172A] px-8 py-3 rounded-full font-semibold hover:bg-[#F3EDE3] transition">Explore Our Work</button>
+  <!-- Hero Section Split -->
+  <section id="hero" class="h-screen grid md:grid-cols-2 items-center relative overflow-hidden">
+    <div class="z-10 px-10 md:px-16" data-aos="fade-right">
+      <h2 class="text-5xl md:text-6xl font-extrabold mb-4 text-[#F3EDE3]">PLANUM GROUP</h2>
+      <p class="text-xl md:text-2xl text-[#D4A373] font-medium mb-4">Building spaces that inspire and endure.</p>
+      <p class="max-w-md text-gray-300 mb-8">Since 1996, we’ve shaped skylines with thoughtful design and precision — delivering over 500 projects across residential, commercial, retail, and healthcare spaces.</p>
+      <button id="exploreBtn" class="bg-[#D4A373] text-[#0F172A] px-8 py-3 rounded-full font-semibold hover:bg-[#F3EDE3] hover:text-[#0F172A] transition">Explore Our Work</button>
+    </div>
+    <div class="relative h-full w-full hidden md:block">
+      <div class="hero-overlay"></div>
+      <img class="hero-image" src="/assets/img/Residential/R1.jpg" alt="Hero Image">
+      <img class="hero-image" src="/assets/img/Residential/R2.jpg" alt="Hero Image">
+      <img class="hero-image" src="/assets/img/commercial/C1.jpg" alt="Hero Image">
+      <img class="hero-image" src="/assets/img/commercial/C2.jpg" alt="Hero Image">
+      <img class="hero-image" src="/assets/img/commercial/C3.jpg" alt="Hero Image">
+    </div>
   </section>
 
   <!-- Projects -->
   <section id="projects" class="py-20 bg-[#111827]">
     <div class="max-w-7xl mx-auto px-6">
       <h3 class="text-4xl font-bold section-title mb-12">Our Projects</h3>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="rounded-lg overflow-hidden shadow-lg bg-[#1E293B]" data-aos="fade-up">
-          <img src="assets/img/Project1.jpg" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-500" alt="Project 1">
-          <div class="p-6">
-            <h4 class="text-xl font-semibold text-[#D4A373] mb-2">Project One</h4>
-            <p>Innovative mixed-use development blending living, working, and leisure spaces.</p>
-          </div>
+
+      <div class="grid md:grid-cols-2 gap-10 mb-20 items-center">
+        <div data-aos="fade-right">
+          <h4 class="text-3xl font-semibold mb-4 text-[#D4A373]">Residential Projects</h4>
+          <p class="text-lg text-gray-300">Elegant, livable spaces that balance functionality with beauty — designed to bring comfort, style, and sustainability together.</p>
         </div>
-        <div class="rounded-lg overflow-hidden shadow-lg bg-[#1E293B]" data-aos="fade-up" data-aos-delay="200">
-          <img src="assets/img/Project2.jpg" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-500" alt="Project 2">
-          <div class="p-6">
-            <h4 class="text-xl font-semibold text-[#D4A373] mb-2">Project Two</h4>
-            <p>State-of-the-art cultural center with fluid interiors and a dynamic façade.</p>
-          </div>
+        <div data-aos="fade-left">
+          <div class="project-slider" data-category="residential"></div>
         </div>
-        <div class="rounded-lg overflow-hidden shadow-lg bg-[#1E293B]" data-aos="fade-up" data-aos-delay="400">
-          <img src="assets/img/Project3.jpg" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-500" alt="Project 3">
-          <div class="p-6">
-            <h4 class="text-xl font-semibold text-[#D4A373] mb-2">Project Three</h4>
-            <p>Sustainable residential tower featuring green terraces and smart materials.</p>
-          </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-10 mb-20 items-center">
+        <div class="md:order-2" data-aos="fade-left">
+          <h4 class="text-3xl font-semibold mb-4 text-[#D4A373]">Commercial Spaces</h4>
+          <p class="text-lg text-gray-300">Dynamic workplaces and public environments designed for collaboration, impact, and lasting impression.</p>
+        </div>
+        <div class="md:order-1" data-aos="fade-right">
+          <div class="project-slider" data-category="commercial"></div>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-10 items-center">
+        <div data-aos="fade-right">
+          <h4 class="text-3xl font-semibold mb-4 text-[#D4A373]">Interior Designs</h4>
+          <p class="text-lg text-gray-300">Refined interiors that tell stories through textures, materials, and spatial flow — blending art with purpose.</p>
+        </div>
+        <div data-aos="fade-left">
+          <div class="project-slider" data-category="interior"></div>
         </div>
       </div>
     </div>
@@ -73,24 +99,39 @@
   <!-- About -->
   <section id="about" class="py-20 bg-[#0F172A]">
     <div class="max-w-6xl mx-auto px-6 text-center">
-      <h3 class="text-4xl font-bold section-title mb-10 text-center inline-block">About Us</h3>
+      <h3 class="text-4xl font-bold section-title mb-10 inline-block">About Us</h3>
       <p class="max-w-3xl mx-auto mb-10 text-lg text-gray-300" data-aos="fade-up">
         <strong>Planum Group</strong> was established in 1996 and has since completed over 500 projects spanning residential, commercial, retail, and healthcare spaces.
         Our work reflects a philosophy of balance — blending form and function with an unwavering focus on human experience.
-        From concept to completion, every project is guided by design clarity, sustainability, and precision in execution.
       </p>
-      <div class="grid md:grid-cols-3 gap-8 mt-12">
-        <div class="p-6 bg-[#1E293B] rounded-lg shadow-md" data-aos="zoom-in">
-          <h4 class="text-2xl font-semibold text-[#D4A373] mb-2">Architecture</h4>
-          <p>Creating bold, efficient, and timeless designs that define skylines and spaces.</p>
-        </div>
-        <div class="p-6 bg-[#1E293B] rounded-lg shadow-md" data-aos="zoom-in" data-aos-delay="200">
-          <h4 class="text-2xl font-semibold text-[#D4A373] mb-2">Interiors</h4>
-          <p>Transforming interiors into elegant environments that blend style and functionality.</p>
-        </div>
-        <div class="p-6 bg-[#1E293B] rounded-lg shadow-md" data-aos="zoom-in" data-aos-delay="400">
-          <h4 class="text-2xl font-semibold text-[#D4A373] mb-2">Developers</h4>
-          <p>Delivering integrated developments with innovative planning and engineering precision.</p>
+
+      <div class="mt-16">
+        <h4 class="text-3xl font-semibold mb-8 text-[#D4A373]">Leadership & Team</h4>
+        <div class="grid md:grid-cols-2 gap-10">
+          <div class="p-6 bg-[#1E293B] rounded-lg shadow-md" data-aos="fade-up">
+            <img src="/assets/img/team/founder.jpg" alt="Founder" class="w-40 h-40 object-cover mx-auto rounded-full mb-4">
+            <h5 class="text-2xl font-semibold mb-2 text-[#F3EDE3]">MD Bashir</h5>
+            <p class="text-[#D4A373] mb-2">Founder & Chief Architect</p>
+            <p>“Planum Group was built on the belief that architecture should evoke emotion, not just admiration.”</p>
+          </div>
+          <div class="p-6 bg-[#1E293B] rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="200">
+            <img src="/assets/img/team/anees.jpg" alt="CEO" class="w-40 h-40 object-cover mx-auto rounded-full mb-4">
+            <h5 class="text-2xl font-semibold mb-2 text-[#F3EDE3]">Anees Ahmed</h5>
+            <p class="text-[#D4A373] mb-2">CEO</p>
+            <p>“Every project at Planum Group is a story of collaboration, precision, and purpose.”</p>
+          </div>
+          <div class="p-6 bg-[#1E293B] rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="200">
+            <img src="/assets/img/team/anees.jpg" alt="Managing Director" class="w-40 h-40 object-cover mx-auto rounded-full mb-4">
+            <h5 class="text-2xl font-semibold mb-2 text-[#F3EDE3]">Asad Ahmed</h5>
+            <p class="text-[#D4A373] mb-2">Managing Director</p>
+            <p>“Every project at Planum Group is a story of collaboration, precision, and purpose.”</p>
+          </div>
+          <div class="p-6 bg-[#1E293B] rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="200">
+            <img src="/assets/img/team/anees.jpg" alt="Director" class="w-40 h-40 object-cover mx-auto rounded-full mb-4">
+            <h5 class="text-2xl font-semibold mb-2 text-[#F3EDE3]">Azeem Ahmed</h5>
+            <p class="text-[#D4A373] mb-2">Director</p>
+            <p>“Every project at Planum Group is a story of collaboration, precision, and purpose.”</p>
+          </div>
         </div>
       </div>
     </div>
@@ -138,15 +179,112 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
   <script>
     AOS.init({ duration: 1000, once: true });
-
     document.getElementById('year').textContent = new Date().getFullYear();
 
     document.getElementById('backToTop').addEventListener('click', () => {
       gsap.to(window, {duration: 1, scrollTo: {y: 0}});
     });
 
-    // Hero title animation
-    gsap.from('.hero-title span', {opacity: 0, y: 40, scale: 0.8, stagger: 0.05, duration: 1.2, ease: 'power3.out'});
+    document.getElementById('exploreBtn').addEventListener('click', () => {
+      gsap.to(window, {duration: 1, scrollTo: '#projects'});
+    });
+
+    // Hero slideshow cinematic transitions
+    const images = document.querySelectorAll('.hero-image');
+    let index = 0;
+    function showNextImage() {
+      images.forEach((img, i) => {
+        if (i === index) {
+          img.style.opacity = 1;
+          img.style.transform = 'scale(1.1)';
+        } else {
+          img.style.opacity = 0;
+          img.style.transform = 'scale(1.05)';
+        }
+      });
+      index = (index + 1) % images.length;
+    }
+    showNextImage();
+    setInterval(showNextImage, 6000);
+
+    const projectSliderManifest = {
+      residential: {
+        folder: 'assets/img/Residential/',
+        files: ['R1.jpg','R2.jpg','R3.jpg','R4.jpg','R5.jpg','R6.jpg','R7.jpg','R8.jpg','R9.jpg','R10.jpg','R11.jpg','R12.jpg','R13.jpg','R14.jpg']
+      },
+      commercial: {
+        folder: 'assets/img/commercial/',
+        files: ['C1.jpg','C2.jpg','C3.jpg','C4.jpg','C5.jpg']
+      },
+      interior: {
+        folder: 'assets/img/Interior/',
+        files: []
+      }
+    };
+
+    function mountProjectSlider(slider, config, categoryKey) {
+      const titleCaseCategory = categoryKey.charAt(0).toUpperCase() + categoryKey.slice(1);
+
+      if (!config || !config.files || !config.files.length) {
+        slider.classList.add('empty');
+        slider.innerHTML = '<div class="project-slider__fallback">Images coming soon</div>';
+        return;
+      }
+
+      slider.classList.remove('empty');
+      slider.innerHTML = '';
+
+      const slides = config.files.map((fileName, index) => {
+        const img = document.createElement('img');
+        img.src = `${config.folder}${fileName}`;
+        img.alt = `${titleCaseCategory} showcase ${index + 1}`;
+        img.className = 'project-slide';
+        img.decoding = 'async';
+        img.loading = index === 0 ? 'eager' : 'lazy';
+        img.style.zIndex = config.files.length - index;
+        slider.appendChild(img);
+        return img;
+      });
+
+      let activeIndex = 0;
+      slides[activeIndex].classList.add('active');
+
+      if (slides.length === 1) {
+        return;
+      }
+
+      const cycleSlides = () => {
+        slides[activeIndex].classList.remove('active');
+        activeIndex = (activeIndex + 1) % slides.length;
+        slides[activeIndex].classList.add('active');
+      };
+
+      let intervalId = setInterval(cycleSlides, 6000);
+
+      slider.addEventListener('mouseenter', () => {
+        if (!intervalId) {
+          return;
+        }
+        clearInterval(intervalId);
+        intervalId = null;
+      });
+
+      slider.addEventListener('mouseleave', () => {
+        if (intervalId || slides.length <= 1) {
+          return;
+        }
+        intervalId = setInterval(cycleSlides, 6000);
+      });
+    }
+
+    (async () => {
+      const sliders = document.querySelectorAll('.project-slider');
+      sliders.forEach((slider) => {
+        const category = slider.dataset.category;
+        const config = projectSliderManifest[category];
+        mountProjectSlider(slider, config, category);
+      });
+    })();
   </script>
 </body>
 </html>

@@ -9,8 +9,9 @@
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
   <style>
     body { font-family: 'Poppins', sans-serif; background: linear-gradient(to bottom, #F9F6F1, #FFFFFF); color: #1E293B; }
-    .hero-title span { display: inline-block; opacity: 0; transform: translateY(40px) scale(0.8); }
     .section-title { color: #1E293B; border-left: 4px solid #D4A373; padding-left: 0.5rem; }
+    .hero-image { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1s ease-in-out; }
+    .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 1; }
   </style>
 </head>
 <body class="overflow-x-hidden">
@@ -29,41 +30,60 @@
     </div>
   </header>
 
-  <!-- Hero -->
-  <section id="hero" class="h-screen flex flex-col justify-center items-center text-center px-4 relative overflow-hidden">
-    <h2 class="hero-title text-6xl md:text-7xl font-extrabold mb-4" data-aos="fade-up">PLANUM GROUP</h2>
-    <p class="text-xl md:text-2xl text-[#D4A373] font-medium mb-4" data-aos="fade-up" data-aos-delay="200">Building spaces that inspire and endure.</p>
-    <p class="max-w-2xl mx-auto text-lg text-gray-700 mb-8" data-aos="fade-up" data-aos-delay="400">
-      Since 1996, we have shaped skylines with thoughtful design and precision — delivering over 500 projects across residential, commercial, retail, and healthcare spaces.
-    </p>
-    <button class="bg-[#1E293B] text-white px-8 py-3 rounded-full font-semibold hover:bg-[#D4A373] transition">Explore Our Work</button>
+  <!-- Hero Section Split -->
+  <section id="hero" class="h-screen grid md:grid-cols-2 items-center relative overflow-hidden">
+    <div class="z-10 px-10 md:px-16" data-aos="fade-right">
+      <h2 class="text-5xl md:text-6xl font-extrabold mb-4">PLANUM GROUP</h2>
+      <p class="text-xl md:text-2xl text-[#D4A373] font-medium mb-4">Building spaces that inspire and endure.</p>
+      <p class="max-w-md text-gray-700 mb-8">Since 1996, we’ve shaped skylines with thoughtful design and precision — delivering over 500 projects across residential, commercial, retail, and healthcare spaces.</p>
+      <button id="exploreBtn" class="bg-[#1E293B] text-white px-8 py-3 rounded-full font-semibold hover:bg-[#D4A373] transition">Explore Our Work</button>
+    </div>
+    <div class="relative h-full w-full hidden md:block">
+      <div class="hero-overlay"></div>
+      <img class="hero-image" src="/assets/img/Residential/R1.jpg" alt="Hero Image">
+      <img class="hero-image" src="/assets/img/Residential/R2.jpg" alt="Hero Image">
+      <img class="hero-image" src="/assets/img/Residential/R3.jpg" alt="Hero Image">
+      <img class="hero-image" src="/assets/img/commercial/C1.jpg" alt="Hero Image">
+      <img class="hero-image" src="/assets/img/commercial/C2.jpg" alt="Hero Image">
+      <img class="hero-image" src="/assets/img/commercial/C3.jpg" alt="Hero Image">
+    </div>
   </section>
 
   <!-- Projects -->
   <section id="projects" class="py-20">
     <div class="max-w-7xl mx-auto px-6">
       <h3 class="text-4xl font-bold section-title mb-12">Our Projects</h3>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="rounded-lg overflow-hidden shadow-md" data-aos="fade-up">
-          <img src="assets/img/Project1.jpg" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-500" alt="Project 1">
-          <div class="p-6 bg-white">
-            <h4 class="text-xl font-semibold mb-2">Project One</h4>
-            <p>Innovative mixed-use development blending living, working, and leisure spaces.</p>
-          </div>
+
+      <!-- Residential -->
+      <div class="grid md:grid-cols-2 gap-10 mb-20 items-center">
+        <div data-aos="fade-right">
+          <h4 class="text-3xl font-semibold mb-4 text-[#D4A373]">Residential Projects</h4>
+          <p class="text-lg text-gray-700">Elegant, livable spaces that balance functionality with beauty — designed to bring comfort, style, and sustainability together.</p>
         </div>
-        <div class="rounded-lg overflow-hidden shadow-md" data-aos="fade-up" data-aos-delay="200">
-          <img src="assets/img/Project2.jpg" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-500" alt="Project 2">
-          <div class="p-6 bg-white">
-            <h4 class="text-xl font-semibold mb-2">Project Two</h4>
-            <p>State-of-the-art cultural center with fluid interiors and a dynamic façade.</p>
-          </div>
+        <div data-aos="fade-left">
+          <img src="/assets/img/Residential/R1.jpg" alt="Residential" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-500" />
         </div>
-        <div class="rounded-lg overflow-hidden shadow-md" data-aos="fade-up" data-aos-delay="400">
-          <img src="assets/img/Project3.jpg" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-500" alt="Project 3">
-          <div class="p-6 bg-white">
-            <h4 class="text-xl font-semibold mb-2">Project Three</h4>
-            <p>Sustainable residential tower featuring green terraces and smart materials.</p>
-          </div>
+      </div>
+
+      <!-- Commercial -->
+      <div class="grid md:grid-cols-2 gap-10 mb-20 items-center">
+        <div class="md:order-2" data-aos="fade-left">
+          <h4 class="text-3xl font-semibold mb-4 text-[#D4A373]">Commercial Spaces</h4>
+          <p class="text-lg text-gray-700">Dynamic workplaces and public environments designed for collaboration, impact, and lasting impression.</p>
+        </div>
+        <div class="md:order-1" data-aos="fade-right">
+          <img src="/assets/img/commercial/C1.jpg" alt="Commercial" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-500" />
+        </div>
+      </div>
+
+      <!-- Interiors -->
+      <div class="grid md:grid-cols-2 gap-10 items-center">
+        <div data-aos="fade-right">
+          <h4 class="text-3xl font-semibold mb-4 text-[#D4A373]">Interior Designs</h4>
+          <p class="text-lg text-gray-700">Refined interiors that tell stories through textures, materials, and spatial flow — blending art with purpose.</p>
+        </div>
+        <div data-aos="fade-left">
+          <img src="/assets/img/interiors/I1.jpg" alt="Interiors" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-500" />
         </div>
       </div>
     </div>
@@ -72,24 +92,28 @@
   <!-- About -->
   <section id="about" class="py-20 bg-[#FFFDF9]">
     <div class="max-w-6xl mx-auto px-6 text-center">
-      <h3 class="text-4xl font-bold section-title mb-10 text-center inline-block">About Us</h3>
+      <h3 class="text-4xl font-bold section-title mb-10 inline-block">About Us</h3>
       <p class="max-w-3xl mx-auto mb-10 text-lg text-gray-700" data-aos="fade-up">
         <strong>Planum Group</strong> was established in 1996 and has since completed over 500 projects spanning residential, commercial, retail, and healthcare spaces.
         Our work reflects a philosophy of balance — blending form and function with an unwavering focus on human experience.
-        From concept to completion, every project is guided by design clarity, sustainability, and precision in execution.
       </p>
-      <div class="grid md:grid-cols-3 gap-8 mt-12">
-        <div class="p-6 bg-white rounded-lg shadow-md" data-aos="zoom-in">
-          <h4 class="text-2xl font-semibold text-[#D4A373] mb-2">Architecture</h4>
-          <p>Creating bold, efficient, and timeless designs that define skylines and spaces.</p>
-        </div>
-        <div class="p-6 bg-white rounded-lg shadow-md" data-aos="zoom-in" data-aos-delay="200">
-          <h4 class="text-2xl font-semibold text-[#D4A373] mb-2">Interiors</h4>
-          <p>Transforming interiors into elegant environments that blend style and functionality.</p>
-        </div>
-        <div class="p-6 bg-white rounded-lg shadow-md" data-aos="zoom-in" data-aos-delay="400">
-          <h4 class="text-2xl font-semibold text-[#D4A373] mb-2">Developers</h4>
-          <p>Delivering integrated developments with innovative planning and engineering precision.</p>
+
+      <!-- Leadership & Team -->
+      <div class="mt-16">
+        <h4 class="text-3xl font-semibold mb-8 text-[#D4A373]">Leadership & Team</h4>
+        <div class="grid md:grid-cols-2 gap-10">
+          <div class="p-6 bg-white rounded-lg shadow-md" data-aos="fade-up">
+            <img src="/assets/img/team/founder.jpg" alt="Founder" class="w-40 h-40 object-cover mx-auto rounded-full mb-4">
+            <h5 class="text-2xl font-semibold mb-2">X</h5>
+            <p class="text-[#D4A373] mb-2">Founder & CEO</p>
+            <p>“Planum Group was built on the belief that architecture should evoke emotion, not just admiration.”</p>
+          </div>
+          <div class="p-6 bg-white rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="200">
+            <img src="/assets/img/team/anees.jpg" alt="Engineer" class="w-40 h-40 object-cover mx-auto rounded-full mb-4">
+            <h5 class="text-2xl font-semibold mb-2">Anees Ahmad</h5>
+            <p class="text-[#D4A373] mb-2">Lead Structural Engineer</p>
+            <p>“Every project at Planum Group is a story of collaboration, precision, and purpose.”</p>
+          </div>
         </div>
       </div>
     </div>
@@ -137,15 +161,25 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
   <script>
     AOS.init({ duration: 1000, once: true });
-
     document.getElementById('year').textContent = new Date().getFullYear();
 
     document.getElementById('backToTop').addEventListener('click', () => {
       gsap.to(window, {duration: 1, scrollTo: {y: 0}});
     });
 
-    // GSAP scroll animations
-    gsap.from('.hero-title span', {opacity: 0, y: 40, scale: 0.8, stagger: 0.05, duration: 1.2, ease: 'power3.out'});
+    document.getElementById('exploreBtn').addEventListener('click', () => {
+      gsap.to(window, {duration: 1, scrollTo: '#projects'});
+    });
+
+    // Hero slideshow
+    const images = document.querySelectorAll('.hero-image');
+    let index = 0;
+    function showNextImage() {
+      images.forEach((img, i) => img.style.opacity = i === index ? 1 : 0);
+      index = (index + 1) % images.length;
+    }
+    showNextImage();
+    setInterval(showNextImage, 5000);
   </script>
 </body>
 </html>
