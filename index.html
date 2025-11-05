@@ -10,8 +10,18 @@
   <style>
     body { font-family: 'Poppins', sans-serif; background: linear-gradient(to bottom, #F9F6F1, #FFFFFF); color: #1E293B; }
     .section-title { color: #1E293B; border-left: 4px solid #D4A373; padding-left: 0.5rem; }
-    .hero-image { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1s ease-in-out; }
-    .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 1; }
+    .hero-image { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.2s ease-in-out, transform 10s ease-in-out; transform: scale(1.05); }
+    .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: transparent; z-index: 1; pointer-events: none; }
+    .project-slider { position: relative; width: 100%; height: 22rem; border-radius: 0.75rem; overflow: hidden; box-shadow: 0 30px 50px rgba(15, 23, 42, 0.18); background: linear-gradient(135deg, rgba(248, 250, 252, 0.95), rgba(241, 245, 249, 0.85)); isolation: isolate; }
+    .project-slider::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.6), transparent 45%), radial-gradient(circle at 80% 80%, rgba(226, 232, 240, 0.75), transparent 55%); mix-blend-mode: multiply; pointer-events: none; transition: opacity 1s ease-in-out; opacity: 0.35; }
+    .project-slider:hover::after { opacity: 0.2; }
+    .project-slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.05); transition: opacity 1.1s ease-in-out, transform 12s ease-in-out; }
+    .project-slide.active { opacity: 1; transform: scale(1.15); }
+    .project-slider.empty::after { display: none; }
+    .project-slider__fallback { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; color: #64748B; font-size: 0.9rem; letter-spacing: 0.16em; text-transform: uppercase; background: rgba(248, 250, 252, 0.82); }
+    @media (max-width: 768px) {
+      .project-slider { height: 18rem; }
+    }
   </style>
 </head>
 <body class="overflow-x-hidden">
@@ -61,7 +71,7 @@
           <p class="text-lg text-gray-700">Elegant, livable spaces that balance functionality with beauty — designed to bring comfort, style, and sustainability together.</p>
         </div>
         <div data-aos="fade-left">
-          <img src="/assets/img/Residential/R1.jpg" alt="Residential" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-500" />
+          <div class="project-slider" data-category="residential"></div>
         </div>
       </div>
 
@@ -72,7 +82,7 @@
           <p class="text-lg text-gray-700">Dynamic workplaces and public environments designed for collaboration, impact, and lasting impression.</p>
         </div>
         <div class="md:order-1" data-aos="fade-right">
-          <img src="/assets/img/commercial/C1.jpg" alt="Commercial" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-500" />
+          <div class="project-slider" data-category="commercial"></div>
         </div>
       </div>
 
@@ -83,7 +93,7 @@
           <p class="text-lg text-gray-700">Refined interiors that tell stories through textures, materials, and spatial flow — blending art with purpose.</p>
         </div>
         <div data-aos="fade-left">
-          <img src="/assets/img/interiors/I1.jpg" alt="Interiors" class="rounded-lg shadow-md hover:scale-105 transition-transform duration-500" />
+          <div class="project-slider" data-category="interior"></div>
         </div>
       </div>
     </div>
@@ -171,15 +181,102 @@
       gsap.to(window, {duration: 1, scrollTo: '#projects'});
     });
 
-    // Hero slideshow
+    // Hero slideshow cinematic transitions
     const images = document.querySelectorAll('.hero-image');
     let index = 0;
     function showNextImage() {
-      images.forEach((img, i) => img.style.opacity = i === index ? 1 : 0);
+      images.forEach((img, i) => {
+        if (i === index) {
+          img.style.opacity = 1;
+          img.style.transform = 'scale(1.1)';
+        } else {
+          img.style.opacity = 0;
+          img.style.transform = 'scale(1.05)';
+        }
+      });
       index = (index + 1) % images.length;
     }
     showNextImage();
-    setInterval(showNextImage, 5000);
+    setInterval(showNextImage, 6000);
+
+    const projectSliderManifest = {
+      residential: {
+        folder: 'assets/img/Residential/',
+        files: ['R1.jpg','R2.jpg','R3.jpg','R4.jpg','R5.jpg','R6.jpg','R7.jpg','R8.jpg','R9.jpg','R10.jpg','R11.jpg','R12.jpg','R13.jpg','R14.jpg']
+      },
+      commercial: {
+        folder: 'assets/img/commercial/',
+        files: ['C1.jpg','C2.jpg','C3.jpg','C4.jpg','C5.jpg']
+      },
+      interior: {
+        folder: 'assets/img/Interior/',
+        files: []
+      }
+    };
+
+    function mountProjectSlider(slider, config, categoryKey) {
+      const titleCaseCategory = categoryKey.charAt(0).toUpperCase() + categoryKey.slice(1);
+
+      if (!config || !config.files || !config.files.length) {
+        slider.classList.add('empty');
+        slider.innerHTML = '<div class="project-slider__fallback">Images coming soon</div>';
+        return;
+      }
+
+      slider.classList.remove('empty');
+      slider.innerHTML = '';
+
+      const slides = config.files.map((fileName, index) => {
+        const img = document.createElement('img');
+        img.src = `${config.folder}${fileName}`;
+        img.alt = `${titleCaseCategory} showcase ${index + 1}`;
+        img.className = 'project-slide';
+        img.decoding = 'async';
+        img.loading = index === 0 ? 'eager' : 'lazy';
+        img.style.zIndex = config.files.length - index;
+        slider.appendChild(img);
+        return img;
+      });
+
+      let activeIndex = 0;
+      slides[activeIndex].classList.add('active');
+
+      if (slides.length === 1) {
+        return;
+      }
+
+      const cycleSlides = () => {
+        slides[activeIndex].classList.remove('active');
+        activeIndex = (activeIndex + 1) % slides.length;
+        slides[activeIndex].classList.add('active');
+      };
+
+      let intervalId = setInterval(cycleSlides, 6000);
+
+      slider.addEventListener('mouseenter', () => {
+        if (!intervalId) {
+          return;
+        }
+        clearInterval(intervalId);
+        intervalId = null;
+      });
+
+      slider.addEventListener('mouseleave', () => {
+        if (intervalId || slides.length <= 1) {
+          return;
+        }
+        intervalId = setInterval(cycleSlides, 6000);
+      });
+    }
+
+    (async () => {
+      const sliders = document.querySelectorAll('.project-slider');
+      sliders.forEach((slider) => {
+        const category = slider.dataset.category;
+        const config = projectSliderManifest[category];
+        mountProjectSlider(slider, config, category);
+      });
+    })();
   </script>
 </body>
 </html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PLANUM GROUP – Unified Light & Dark</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+  <style>
+    :root {
+      --bg-light: linear-gradient(to bottom, #F9F6F1, #FFFFFF);
+      --bg-dark: linear-gradient(to bottom, #0F172A, #1E293B);
+      --text-light: #1E293B;
+      --text-dark: #F3EDE3;
+      --accent: #D4A373;
+      --card-light: #FFFFFF;
+      --card-dark: #1E293B;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg-light);
+      color: var(--text-light);
+      transition: all 0.6s ease;
+    }
+    body.dark {
+      font-family: 'Playfair Display', serif;
+      background: var(--bg-dark);
+      color: var(--text-dark);
+    }
+    .section-title { border-left: 4px solid var(--accent); padding-left: 0.5rem; }
+    .hero-image { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.05); transition: opacity 1.2s ease-in-out, transform 8s ease-in-out; }
+    .hero-image.active { opacity: 1; transform: scale(1.1); }
+    .project-slider { position: relative; width: 100%; height: 22rem; border-radius: 0.75rem; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.15); background: var(--card-light); }
+    body.dark .project-slider { background: var(--card-dark); }
+    .project-slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.05); transition: opacity 1.2s ease-in-out, transform 10s ease-in-out; }
+    .project-slide.active { opacity: 1; transform: scale(1.1); }
+    .theme-toggle { cursor: pointer; font-size: 1.5rem; transition: transform 0.3s ease; }
+    .theme-toggle:hover { transform: rotate(20deg); }
+
+    /* --- Dark Mode Readability for Team Section --- */
+/* Enhanced readability for dark mode team cards */
+body.dark .team-card {
+  color: #D1D5DB; /* Balanced warm gray for paragraphs */
+  font-family: 'Poppins', sans-serif;
+}
+
+body.dark .team-card h5 {
+  color: #F3EED9; /* Ivory-gold for names (more contrast) */
+  font-weight: 700;
+}
+
+body.dark .team-card p {
+  color: #D1D5DB; /* Medium contrast for text */
+}
+
+body.dark .team-card {
+  background-color: #162033; /* darker than #1E293B for contrast */
+}
+
+  </style>
+</head>
+<body class="overflow-x-hidden">
+  <!-- Header -->
+  <header class="fixed top-0 left-0 w-full bg-white/70 dark:bg-[#0F172A]/70 backdrop-blur-md z-20 shadow">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+      <h1 class="text-2xl font-bold text-[color:var(--text-light)] dark:text-[color:var(--accent)]">PLANUM GROUP</h1>
+      <nav class="flex items-center space-x-6">
+        <ul class="flex space-x-8 text-lg">
+          <li><a href="#hero" class="hover:text-[color:var(--accent)] transition">Home</a></li>
+          <li><a href="#projects" class="hover:text-[color:var(--accent)] transition">Projects</a></li>
+          <li><a href="#about" class="hover:text-[color:var(--accent)] transition">About</a></li>
+          <li><a href="#contact" class="hover:text-[color:var(--accent)] transition">Contact</a></li>
+        </ul>
+        <button id="themeToggle" class="theme-toggle ml-6">🌙</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero" class="h-screen grid md:grid-cols-2 items-center relative overflow-hidden">
+    <div class="z-10 px-10 md:px-16" data-aos="fade-right">
+      <h2 class="text-5xl md:text-6xl font-extrabold mb-4">PLANUM GROUP</h2>
+      <p class="text-xl md:text-2xl text-[color:var(--accent)] font-medium mb-4">Building spaces that inspire and endure.</p>
+      <p class="max-w-md mb-8 text-gray-700 dark:text-gray-300">Since 1996, we’ve shaped skylines with thoughtful design and precision — delivering over 500 projects across residential, commercial, retail, and healthcare spaces.</p>
+      <button id="exploreBtn" class="bg-[color:var(--accent)] text-white px-8 py-3 rounded-full font-semibold hover:bg-[#1E293B] hover:text-white transition">Explore Our Work</button>
+    </div>
+    <div class="relative h-full w-full hidden md:block">
+      <img class="hero-image active" src="assets/img/Residential/R1.jpg" alt="Hero 1">
+      <img class="hero-image" src="assets/img/Residential/R2.jpg" alt="Hero 2">
+      <img class="hero-image" src="assets/img/commercial/C1.jpg" alt="Hero 3">
+      <img class="hero-image" src="assets/img/commercial/C2.jpg" alt="Hero 4">
+      <img class="hero-image" src="assets/img/commercial/C3.jpg" alt="Hero 5">
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="py-20">
+    <div class="max-w-7xl mx-auto px-6">
+      <h3 class="text-4xl font-bold section-title mb-12">Our Projects</h3>
+
+      <div class="grid md:grid-cols-2 gap-10 mb-20 items-center">
+        <div data-aos="fade-right">
+          <h4 class="text-3xl font-semibold mb-4 text-[color:var(--accent)]">Residential Projects</h4>
+          <p>Elegant, livable spaces that balance functionality with beauty — designed to bring comfort, style, and sustainability together.</p>
+        </div>
+        <div data-aos="fade-left"><div class="project-slider" data-category="residential"></div></div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-10 mb-20 items-center">
+        <div class="md:order-2" data-aos="fade-left">
+          <h4 class="text-3xl font-semibold mb-4 text-[color:var(--accent)]">Commercial Spaces</h4>
+          <p>Dynamic workplaces and public environments designed for collaboration, impact, and lasting impression.</p>
+        </div>
+        <div class="md:order-1" data-aos="fade-right"><div class="project-slider" data-category="commercial"></div></div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-10 items-center">
+        <div data-aos="fade-right">
+          <h4 class="text-3xl font-semibold mb-4 text-[color:var(--accent)]">Interior Designs</h4>
+          <p>Refined interiors that tell stories through textures, materials, and spatial flow — blending art with purpose.</p>
+        </div>
+        <div data-aos="fade-left"><div class="project-slider" data-category="interior"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-20">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h3 class="text-4xl font-bold section-title mb-10 inline-block">About Us</h3>
+      <p class="max-w-3xl mx-auto mb-10" data-aos="fade-up">
+        <strong>Planum Group</strong> was established in 1996 and has since completed over 500 projects spanning residential, commercial, retail, and healthcare spaces.
+      </p>
+
+      <h4 class="text-3xl font-semibold mb-8 text-[color:var(--accent)]">Leadership & Team</h4>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div class="team-card p-6 bg-[color:var(--card-light)] dark:bg-[color:var(--card-dark)] rounded-lg shadow-md" data-aos="fade-up">
+          <img src="assets/img/team/founder.jpg" class="w-40 h-40 object-cover mx-auto rounded-full mb-4">
+          <h5 class="text-2xl font-semibold mb-2">MD Bashir</h5>
+          <p class="text-[color:var(--accent)] mb-2">Founder & Chief Architect</p>
+          <p>“Planum Group was built on the belief that architecture should evoke emotion, not just admiration.”</p>
+        </div>
+        <div class="team-card p-6 bg-[color:var(--card-light)] dark:bg-[color:var(--card-dark)] rounded-lg shadow-md" data-aos="fade-up">
+          <img src="assets/img/team/anees.jpg" class="w-40 h-40 object-cover mx-auto rounded-full mb-4">
+          <h5 class="text-2xl font-semibold mb-2">Anees Ahmed</h5>
+          <p class="text-[color:var(--accent)] mb-2">CEO</p>
+          <p>“Every project at Planum Group is a story of collaboration, precision, and purpose.”</p>
+        </div>
+        <div class="team-card p-6 bg-[color:var(--card-light)] dark:bg-[color:var(--card-dark)] rounded-lg shadow-md" data-aos="fade-up">
+          <img src="assets/img/team/anees.jpg" class="w-40 h-40 object-cover mx-auto rounded-full mb-4">
+          <h5 class="text-2xl font-semibold mb-2">Asad Ahmed</h5>
+          <p class="text-[color:var(--accent)] mb-2">Managing Director</p>
+          <p>“Every project at Planum Group is a story of collaboration, precision, and purpose.”</p>
+        </div>
+        <div class="team-card p-6 bg-[color:var(--card-light)] dark:bg-[color:var(--card-dark)] rounded-lg shadow-md" data-aos="fade-up">
+          <img src="assets/img/team/anees.jpg" class="w-40 h-40 object-cover mx-auto rounded-full mb-4">
+          <h5 class="text-2xl font-semibold mb-2">Azeem Ahmed</h5>
+          <p class="text-[color:var(--accent)] mb-2">Director</p>
+          <p>“Every project at Planum Group is a story of collaboration, precision, and purpose.”</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-20">
+    <div class="max-w-6xl mx-auto px-6">
+      <h3 class="text-4xl font-bold section-title mb-10">Contact Us</h3>
+      <div class="grid md:grid-cols-2 gap-12">
+        <div data-aos="fade-right">
+          <h4 class="text-2xl font-semibold mb-4 text-[color:var(--accent)]">Get in Touch</h4>
+          <p>PLANUM GROUP</p>
+          <p>Hyderabad, Telangana, India</p>
+          <p class="mt-2">Phone: <a href="tel:+91XXXXXXXXXX" class="text-[color:var(--accent)]">+91 XXXXX XXXXX</a></p>
+          <p>Email: <a href="mailto:info@planumgroup.com" class="text-[color:var(--accent)]">info@planumgroup.com</a></p>
+        </div>
+        <div data-aos="fade-left">
+          <form class="bg-[color:var(--card-light)] dark:bg-[color:var(--card-dark)] p-6 rounded-lg shadow-md">
+            <h4 class="text-2xl font-semibold mb-4 text-[color:var(--accent)]">Send a Message</h4>
+            <input type="text" placeholder="Your Name" class="w-full p-3 mb-4 rounded border border-gray-300 dark:border-gray-600" required>
+            <input type="email" placeholder="Your Email" class="w-full p-3 mb-4 rounded border border-gray-300 dark:border-gray-600" required>
+            <textarea placeholder="Your Message" rows="5" class="w-full p-3 mb-4 rounded border border-gray-300 dark:border-gray-600" required></textarea>
+            <button type="submit" class="bg-[color:var(--accent)] text-white px-6 py-2 rounded hover:bg-[#1E293B] transition">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-white dark:bg-[#0F172A] text-gray-600 dark:text-gray-400 py-6">
+    <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
+      <p>&copy; <span id="year"></span> PLANUM GROUP. All rights reserved.</p>
+      <button id="backToTop" class="border border-gray-400 px-4 py-2 rounded hover:bg-[color:var(--accent)] hover:text-white transition">Back to Top</button>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+  <script>
+    AOS.init({ duration: 1000, once: true });
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    document.getElementById('backToTop').onclick = () => gsap.to(window, {duration: 1, scrollTo: 0});
+    document.getElementById('exploreBtn').onclick = () => gsap.to(window, {duration: 1, scrollTo: '#projects'});
+
+    const toggleBtn = document.getElementById('themeToggle');
+    const body = document.body;
+    const saved = localStorage.getItem('theme');
+    if (saved === 'dark') { body.classList.add('dark'); toggleBtn.textContent = '🌞'; }
+    toggleBtn.onclick = () => {
+      body.classList.toggle('dark');
+      const dark = body.classList.contains('dark');
+      toggleBtn.textContent = dark ? '🌞' : '🌙';
+      localStorage.setItem('theme', dark ? 'dark' : 'light');
+    };
+
+    // Hero slideshow
+    const heroImgs = document.querySelectorAll('.hero-image');
+    let hIndex = 0;
+    setInterval(() => {
+      heroImgs.forEach((img,i)=>img.classList.toggle('active',i===hIndex));
+      hIndex=(hIndex+1)%heroImgs.length;
+    },6000);
+
+    // Project sliders
+    const sliders = {
+      residential:{folder:'assets/img/Residential/',files:['R1.jpg','R2.jpg','R3.jpg','R4.jpg','R5.jpg','R6.jpg']},
+      commercial:{folder:'assets/img/commercial/',files:['C1.jpg','C2.jpg','C3.jpg','C4.jpg','C5.jpg']},
+      interior:{folder:'assets/img/Interior/',files:[]}
+    };
+    document.querySelectorAll('.project-slider').forEach(s=>{
+      const c=s.dataset.category, cfg=sliders[c];
+      if(!cfg||!cfg.files.length){s.innerHTML='<div class=\"flex items-center justify-center h-full text-gray-400\">Images coming soon</div>';return;}
+      cfg.files.forEach(f=>{const img=document.createElement('img');img.src=cfg.folder+f;img.alt=f;img.className='project-slide';s.appendChild(img);});
+      let i=0;const imgs=s.querySelectorAll('img');imgs[0].classList.add('active');
+      setInterval(()=>{imgs[i].classList.remove('active');i=(i+1)%imgs.length;imgs[i].classList.add('active');},6000);
+    });
+  </script>
+</body>
+</html>
