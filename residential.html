@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Planum Group – Residential Gallery</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --bg-light: linear-gradient(to bottom, #F9F6F1, #FFFFFF);
+      --text-light: #1E293B;
+      --accent: #D4A373;
+      --card-light: #FFFFFF;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg-light);
+      color: var(--text-light);
+    }
+  </style>
+</head>
+<body class="overflow-x-hidden">
+  <header class="sticky top-0 left-0 w-full bg-white/80 backdrop-blur-md z-10 shadow">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+      <div class="flex items-center gap-3">
+        <img src="assets/img/Logo.jpeg" alt="Planum Group logo" class="h-10 w-10 object-contain">
+        <h1 class="text-2xl font-bold text-[color:var(--text-light)]">PLANUM GROUP</h1>
+      </div>
+      <nav class="flex items-center space-x-6">
+        <a href="index.html#projects" class="hover:text-[color:var(--accent)] transition">Back to Projects</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-4xl font-bold mb-4">Residential Projects</h2>
+      <p class="max-w-2xl text-lg text-gray-600 mb-10">A curated collection of homes crafted for comfort, elegance, and everyday living.</p>
+
+      <div id="gallery" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </div>
+  </section>
+
+  <script>
+    const images = ['R1.jpg','R2.jpg','R3.jpg','R4.jpg','R5.jpg','R6.jpg','R7.jpg','R8.jpg','R9.jpg','R10.jpg','R11.jpg','R12.jpg','R13.jpg','R14.jpg'];
+    const folder = 'assets/img/Residential/';
+    const gallery = document.getElementById('gallery');
+    if (!images.length) {
+      gallery.innerHTML = '<div class="text-gray-500">Images coming soon.</div>';
+    } else {
+      images.forEach((file, idx) => {
+        const wrap = document.createElement('div');
+        wrap.className = 'bg-[color:var(--card-light)] rounded-lg shadow-md overflow-hidden';
+        wrap.innerHTML = `<img src="${folder + file}" alt="Residential project ${idx + 1}" class="w-full h-64 object-cover" loading="lazy">`;
+        gallery.appendChild(wrap);
+      });
+    }
+  </script>
+</body>
+</html>

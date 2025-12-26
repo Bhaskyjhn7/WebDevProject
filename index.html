@@ -24,7 +24,7 @@
       transition: all 0.6s ease;
     }
     body.dark {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Poppins', sans-serif;
       background: var(--bg-dark);
       color: var(--text-dark);
     }
@@ -64,7 +64,10 @@ body.dark .team-card {
   <!-- Header -->
   <header class="fixed top-0 left-0 w-full bg-white/70 dark:bg-[#0F172A]/70 backdrop-blur-md z-20 shadow">
     <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
-      <h1 class="text-2xl font-bold text-[color:var(--text-light)] dark:text-[color:var(--accent)]">PLANUM GROUP</h1>
+      <div class="flex items-center gap-3">
+        <img src="assets/img/Logo.jpeg" alt="Planum Group logo" class="h-10 w-10 object-contain">
+        <h1 class="text-2xl font-bold text-[color:var(--text-light)] dark:text-[color:var(--accent)]">PLANUM GROUP</h1>
+      </div>
       <nav class="flex items-center space-x-6">
         <ul class="flex space-x-8 text-lg">
           <li><a href="#hero" class="hover:text-[color:var(--accent)] transition">Home</a></li>
@@ -101,24 +104,33 @@ body.dark .team-card {
 
       <div class="grid md:grid-cols-2 gap-10 mb-20 items-center">
         <div data-aos="fade-right">
-          <h4 class="text-3xl font-semibold mb-4 text-[color:var(--accent)]">Residential Projects</h4>
+          <a href="residential.html" class="inline-flex items-center gap-2 text-3xl font-semibold mb-4 text-[color:var(--accent)] hover:underline">
+            Residential Projects
+          </a>
           <p>Elegant, livable spaces that balance functionality with beauty — designed to bring comfort, style, and sustainability together.</p>
+          <a href="residential.html" class="inline-block mt-4 text-[color:var(--accent)] font-semibold hover:underline">View Residential Gallery</a>
         </div>
         <div data-aos="fade-left"><div class="project-slider" data-category="residential"></div></div>
       </div>
 
       <div class="grid md:grid-cols-2 gap-10 mb-20 items-center">
         <div class="md:order-2" data-aos="fade-left">
-          <h4 class="text-3xl font-semibold mb-4 text-[color:var(--accent)]">Commercial Spaces</h4>
+          <a href="commercial.html" class="inline-flex items-center gap-2 text-3xl font-semibold mb-4 text-[color:var(--accent)] hover:underline">
+            Commercial Spaces
+          </a>
           <p>Dynamic workplaces and public environments designed for collaboration, impact, and lasting impression.</p>
+          <a href="commercial.html" class="inline-block mt-4 text-[color:var(--accent)] font-semibold hover:underline">View Commercial Gallery</a>
         </div>
         <div class="md:order-1" data-aos="fade-right"><div class="project-slider" data-category="commercial"></div></div>
       </div>
 
       <div class="grid md:grid-cols-2 gap-10 items-center">
         <div data-aos="fade-right">
-          <h4 class="text-3xl font-semibold mb-4 text-[color:var(--accent)]">Interior Designs</h4>
+          <a href="interior.html" class="inline-flex items-center gap-2 text-3xl font-semibold mb-4 text-[color:var(--accent)] hover:underline">
+            Interior Designs
+          </a>
           <p>Refined interiors that tell stories through textures, materials, and spatial flow — blending art with purpose.</p>
+          <a href="interior.html" class="inline-block mt-4 text-[color:var(--accent)] font-semibold hover:underline">View Interior Gallery</a>
         </div>
         <div data-aos="fade-left"><div class="project-slider" data-category="interior"></div></div>
       </div>
@@ -133,27 +145,21 @@ body.dark .team-card {
         <strong>Planum Group</strong> was established in 1996 and has since completed over 500 projects spanning residential, commercial, retail, and healthcare spaces.
       </p>
 
-      <h4 class="text-3xl font-semibold mb-8 text-[color:var(--accent)]">Leadership & Team</h4>
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
-        <div class="team-card p-6 bg-[color:var(--card-light)] dark:bg-[color:var(--card-dark)] rounded-lg shadow-md" data-aos="fade-up">
-          <img src="assets/img/team/founder.jpg" class="w-40 h-40 object-cover mx-auto rounded-full mb-4">
+      <h4 class="text-3xl font-semibold mb-8 text-[color:var(--accent)] text-center">Leadership & Team</h4>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center">
+        <div class="team-card w-full max-w-sm text-center p-6 bg-[color:var(--card-light)] dark:bg-[color:var(--card-dark)] rounded-lg shadow-md" data-aos="fade-up">
+          <img src="assets/img/Leadership/Basheer.jpeg" class="w-40 h-40 object-cover mx-auto rounded-full mb-4">
           <h5 class="text-2xl font-semibold mb-2">MD Bashir</h5>
           <p class="text-[color:var(--accent)] mb-2">Founder & Chief Architect</p>
           <p>“Planum Group was built on the belief that architecture should evoke emotion, not just admiration.”</p>
         </div>
-        <div class="team-card p-6 bg-[color:var(--card-light)] dark:bg-[color:var(--card-dark)] rounded-lg shadow-md" data-aos="fade-up">
-          <img src="assets/img/team/anees.jpg" class="w-40 h-40 object-cover mx-auto rounded-full mb-4">
+        <div class="team-card w-full max-w-sm text-center p-6 bg-[color:var(--card-light)] dark:bg-[color:var(--card-dark)] rounded-lg shadow-md" data-aos="fade-up">
+          <img src="assets/img/Leadership/Anees.jpeg" class="w-40 h-40 object-cover mx-auto rounded-full mb-4">
           <h5 class="text-2xl font-semibold mb-2">Anees Ahmed</h5>
           <p class="text-[color:var(--accent)] mb-2">CEO</p>
           <p>“Every project at Planum Group is a story of collaboration, precision, and purpose.”</p>
         </div>
-        <div class="team-card p-6 bg-[color:var(--card-light)] dark:bg-[color:var(--card-dark)] rounded-lg shadow-md" data-aos="fade-up">
-          <img src="assets/img/team/anees.jpg" class="w-40 h-40 object-cover mx-auto rounded-full mb-4">
-          <h5 class="text-2xl font-semibold mb-2">Asad Ahmed</h5>
-          <p class="text-[color:var(--accent)] mb-2">Managing Director</p>
-          <p>“Every project at Planum Group is a story of collaboration, precision, and purpose.”</p>
-        </div>
-        <div class="team-card p-6 bg-[color:var(--card-light)] dark:bg-[color:var(--card-dark)] rounded-lg shadow-md" data-aos="fade-up">
+        <div class="team-card w-full max-w-sm text-center p-6 bg-[color:var(--card-light)] dark:bg-[color:var(--card-dark)] rounded-lg shadow-md" data-aos="fade-up">
           <img src="assets/img/team/anees.jpg" class="w-40 h-40 object-cover mx-auto rounded-full mb-4">
           <h5 class="text-2xl font-semibold mb-2">Azeem Ahmed</h5>
           <p class="text-[color:var(--accent)] mb-2">Director</p>
@@ -163,11 +169,60 @@ body.dark .team-card {
     </div>
   </section>
 
+  <!-- Testimonies & Impact -->
+  <section id="testimonies" class="py-20">
+    <div class="max-w-7xl mx-auto px-6">
+      <h3 class="text-4xl font-bold section-title mb-12">Testimonies & Impact</h3>
+
+      <div class="grid md:grid-cols-3 gap-8 mb-16 text-center">
+        <div class="p-6 rounded-lg bg-[color:var(--card-light)] dark:bg-[color:var(--card-dark)] shadow-md" data-aos="fade-up">
+          <p class="text-5xl font-extrabold text-[color:var(--accent)]">
+            <span class="countup" data-count="200" data-suffix="+" data-duration="2200">1</span>
+          </p>
+          <p class="mt-2 text-lg font-semibold">Completed Projects</p>
+          <p class="text-sm text-gray-600 dark:text-gray-300">Residential, commercial, retail, and healthcare.</p>
+        </div>
+        <div class="p-6 rounded-lg bg-[color:var(--card-light)] dark:bg-[color:var(--card-dark)] shadow-md" data-aos="fade-up" data-aos-delay="100">
+          <p class="text-5xl font-extrabold text-[color:var(--accent)]">
+            <span class="countup" data-count="120" data-suffix="+" data-duration="2000">1</span>
+          </p>
+          <p class="mt-2 text-lg font-semibold">Happy Clients</p>
+          <p class="text-sm text-gray-600 dark:text-gray-300">Long-term partnerships built on trust.</p>
+        </div>
+        <div class="p-6 rounded-lg bg-[color:var(--card-light)] dark:bg-[color:var(--card-dark)] shadow-md" data-aos="fade-up" data-aos-delay="200">
+          <p class="text-5xl font-extrabold text-[color:var(--accent)]">
+            <span class="countup" data-count="28" data-suffix="+" data-duration="1600">1</span>
+          </p>
+          <p class="mt-2 text-lg font-semibold">Years of Design</p>
+          <p class="text-sm text-gray-600 dark:text-gray-300">Crafted spaces that stand the test of time.</p>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="p-6 rounded-lg bg-[color:var(--card-light)] dark:bg-[color:var(--card-dark)] shadow-md" data-aos="fade-up">
+          <p class="text-sm uppercase tracking-widest text-[color:var(--accent)] mb-2">Residential Villa</p>
+          <p class="mb-4">“Planum Group translated our vision into a warm, functional home with incredible attention to detail.”</p>
+          <p class="font-semibold">— Farah S., Hyderabad</p>
+        </div>
+        <div class="p-6 rounded-lg bg-[color:var(--card-light)] dark:bg-[color:var(--card-dark)] shadow-md" data-aos="fade-up" data-aos-delay="100">
+          <p class="text-sm uppercase tracking-widest text-[color:var(--accent)] mb-2">Corporate Office</p>
+          <p class="mb-4">“The workspace feels premium, productive, and welcoming — exactly what we needed for our team.”</p>
+          <p class="font-semibold">— Sameer K., Founder</p>
+        </div>
+        <div class="p-6 rounded-lg bg-[color:var(--card-light)] dark:bg-[color:var(--card-dark)] shadow-md" data-aos="fade-up" data-aos-delay="200">
+          <p class="text-sm uppercase tracking-widest text-[color:var(--accent)] mb-2">Retail & Interiors</p>
+          <p class="mb-4">“They balanced aesthetics with practical flow, and our customers feel it every day.”</p>
+          <p class="font-semibold">— Ayesha R., Retail Director</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Contact Section -->
   <section id="contact" class="py-20">
     <div class="max-w-6xl mx-auto px-6">
       <h3 class="text-4xl font-bold section-title mb-10">Contact Us</h3>
-      <div class="grid md:grid-cols-2 gap-12">
+      <div class="grid gap-12">
         <div data-aos="fade-right">
           <h4 class="text-2xl font-semibold mb-4 text-[color:var(--accent)]">Get in Touch</h4>
           <p>PLANUM GROUP</p>
@@ -184,18 +239,6 @@ body.dark .team-card {
                         referrerpolicy="no-referrer-when-downgrade">
                     </iframe>
                 </div>
-        </div>
-
-
-        
-        <div data-aos="fade-left">
-          <form class="bg-[color:var(--card-light)] dark:bg-[color:var(--card-dark)] p-6 rounded-lg shadow-md">
-            <h4 class="text-2xl font-semibold mb-4 text-[color:var(--accent)]">Send a Message</h4>
-            <input type="text" placeholder="Your Name" class="w-full p-3 mb-4 rounded border border-gray-300 dark:border-gray-600" required>
-            <input type="email" placeholder="Your Email" class="w-full p-3 mb-4 rounded border border-gray-300 dark:border-gray-600" required>
-            <textarea placeholder="Your Message" rows="5" class="w-full p-3 mb-4 rounded border border-gray-300 dark:border-gray-600" required></textarea>
-            <button type="submit" class="bg-[color:var(--accent)] text-white px-6 py-2 rounded hover:bg-[#1E293B] transition">Submit</button>
-          </form>
         </div>
       </div>
     </div>
@@ -251,6 +294,23 @@ body.dark .team-card {
       cfg.files.forEach(f=>{const img=document.createElement('img');img.src=cfg.folder+f;img.alt=f;img.className='project-slide';s.appendChild(img);});
       let i=0;const imgs=s.querySelectorAll('img');imgs[0].classList.add('active');
       setInterval(()=>{imgs[i].classList.remove('active');i=(i+1)%imgs.length;imgs[i].classList.add('active');},6000);
+    });
+
+    // Count-up stats on load
+    document.querySelectorAll('.countup').forEach((el) => {
+      const target = parseInt(el.dataset.count, 10);
+      const suffix = el.dataset.suffix || '';
+      const duration = parseInt(el.dataset.duration, 10) || 2000;
+      const start = 1;
+      const startTime = performance.now();
+      el.textContent = `${start}${suffix}`;
+      const step = (now) => {
+        const progress = Math.min((now - startTime) / duration, 1);
+        const value = Math.floor(start + (target - start) * progress);
+        el.textContent = `${value}${suffix}`;
+        if (progress < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
     });
   </script>
 </body>
