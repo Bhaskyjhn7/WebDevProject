@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PLANUM GROUP – Unified Light & Dark</title>
+  <title>PLANUM GROUP | Architecture • Interiors • Developers</title>
+  <meta name="description" content="Planum Group is a Hyderabad-based architecture, interiors, and development studio delivering over 500 projects since 1996." />
+  <meta property="og:title" content="PLANUM GROUP" />
+  <meta property="og:description" content="Architecture • Interiors • Developers | Hyderabad" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
@@ -37,6 +40,9 @@
     .project-slide.active { opacity: 1; transform: scale(1.1); }
     .theme-toggle { cursor: pointer; font-size: 1.5rem; transition: transform 0.3s ease; }
     .theme-toggle:hover { transform: rotate(20deg); }
+    @media (max-width: 767px) {
+      .project-slider { height: auto; aspect-ratio: 4 / 3; min-height: 16rem; }
+    }
 
     /* --- Dark Mode Readability for Team Section --- */
 /* Enhanced readability for dark mode team cards */
