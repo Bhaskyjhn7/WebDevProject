@@ -19,12 +19,14 @@
       --accent: #D4A373;
       --card-light: #FFFFFF;
       --card-dark: #1E293B;
+      --header-height: 80px;
     }
     body {
       font-family: 'Poppins', sans-serif;
       background: var(--bg-light);
       color: var(--text-light);
       transition: all 0.6s ease;
+      padding-top: var(--header-height);
     }
     body.dark {
       font-family: 'Poppins', sans-serif;
@@ -42,6 +44,7 @@
     .theme-toggle:hover { transform: rotate(20deg); }
     @media (max-width: 767px) {
       .project-slider { height: auto; aspect-ratio: 4 / 3; min-height: 16rem; }
+      :root { --header-height: 72px; }
     }
 
     /* --- Dark Mode Readability for Team Section --- */
@@ -68,33 +71,46 @@ body.dark .team-card {
 </head>
 <body class="overflow-x-hidden">
   <!-- Header -->
-  <header class="fixed top-0 left-0 w-full bg-white/70 dark:bg-[#0F172A]/70 backdrop-blur-md z-20 shadow">
-    <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+  <header class="fixed top-0 left-0 w-full bg-white/70 dark:bg-[#0F172A]/70 backdrop-blur-md z-20 shadow relative">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-4 md:px-6 py-4">
       <div class="flex items-center gap-3">
         <img src="assets/img/Logo.jpeg" alt="Planum Group logo" class="h-10 w-10 object-contain">
         <h1 class="text-2xl font-bold text-[color:var(--text-light)] dark:text-[color:var(--accent)]">PLANUM GROUP</h1>
       </div>
       <nav class="flex items-center space-x-6">
-        <ul class="flex space-x-8 text-lg">
+        <ul class="hidden md:flex space-x-8 text-lg">
           <li><a href="#hero" class="hover:text-[color:var(--accent)] transition">Home</a></li>
           <li><a href="#projects" class="hover:text-[color:var(--accent)] transition">Projects</a></li>
           <li><a href="#about" class="hover:text-[color:var(--accent)] transition">About</a></li>
           <li><a href="#contact" class="hover:text-[color:var(--accent)] transition">Contact</a></li>
         </ul>
-        <button id="themeToggle" class="theme-toggle ml-6">🌙</button>
+        <button id="themeToggle" class="theme-toggle ml-2 md:ml-6">🌙</button>
+        <button id="mobileMenuBtn" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-full border border-gray-300 dark:border-gray-600 hover:border-[color:var(--accent)] transition" aria-label="Open menu" aria-expanded="false">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M3 6h18v2H3zM3 11h18v2H3zM3 16h18v2H3z"/>
+          </svg>
+        </button>
       </nav>
+    </div>
+    <div id="mobileMenu" class="md:hidden hidden absolute top-full left-0 w-full bg-white/95 dark:bg-[#0F172A]/95 backdrop-blur-md border-t border-gray-200 dark:border-gray-700 shadow-lg">
+      <div class="px-6 py-5 flex flex-col gap-4 text-lg">
+        <a href="#hero" class="hover:text-[color:var(--accent)] transition">Home</a>
+        <a href="#projects" class="hover:text-[color:var(--accent)] transition">Projects</a>
+        <a href="#about" class="hover:text-[color:var(--accent)] transition">About</a>
+        <a href="#contact" class="hover:text-[color:var(--accent)] transition">Contact</a>
+      </div>
     </div>
   </header>
 
   <!-- Hero Section -->
-  <section id="hero" class="h-screen grid md:grid-cols-2 items-center relative overflow-hidden">
-    <div class="z-10 px-10 md:px-16" data-aos="fade-right">
-      <h2 class="text-5xl md:text-6xl font-extrabold mb-4">PLANUM GROUP</h2>
-      <p class="text-xl md:text-2xl text-[color:var(--accent)] font-medium mb-4">Building spaces that inspire and endure.</p>
+  <section id="hero" class="min-h-screen grid md:grid-cols-2 items-center relative overflow-hidden py-10 md:py-0">
+    <div class="z-10 px-6 md:px-16" data-aos="fade-right">
+      <h2 class="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4">PLANUM GROUP</h2>
+      <p class="text-lg sm:text-xl md:text-2xl text-[color:var(--accent)] font-medium mb-4">Building spaces that inspire and endure.</p>
       <p class="max-w-md mb-8 text-gray-700 dark:text-gray-300">Since 1996, we’ve shaped skylines with thoughtful design and precision — delivering over 500 projects across residential, commercial, retail, and healthcare spaces.</p>
       <button id="exploreBtn" class="bg-[color:var(--accent)] text-white px-8 py-3 rounded-full font-semibold hover:bg-[#1E293B] hover:text-white transition">Explore Our Work</button>
     </div>
-    <div class="relative h-full w-full hidden md:block">
+    <div class="relative w-full h-72 sm:h-80 md:h-full mt-8 md:mt-0">
       <img class="hero-image active" src="assets/img/Residential/R1.jpg" alt="Hero 1">
       <img class="hero-image" src="assets/img/Residential/R2.jpg" alt="Hero 2">
       <img class="hero-image" src="assets/img/commercial/C1.jpg" alt="Hero 3">
@@ -104,11 +120,11 @@ body.dark .team-card {
   </section>
 
   <!-- Projects Section -->
-  <section id="projects" class="py-20">
+  <section id="projects" class="py-16 md:py-20">
     <div class="max-w-7xl mx-auto px-6">
       <h3 class="text-4xl font-bold section-title mb-12">Our Projects</h3>
 
-      <div class="grid md:grid-cols-2 gap-10 mb-20 items-center">
+      <div class="grid md:grid-cols-2 gap-8 md:gap-10 mb-12 md:mb-20 items-center">
         <div data-aos="fade-right">
           <a href="residential.html" class="inline-flex items-center gap-2 text-3xl font-semibold mb-4 text-[color:var(--accent)] hover:underline">
             Residential Projects
@@ -119,7 +135,7 @@ body.dark .team-card {
         <div data-aos="fade-left"><div class="project-slider" data-category="residential"></div></div>
       </div>
 
-      <div class="grid md:grid-cols-2 gap-10 mb-20 items-center">
+      <div class="grid md:grid-cols-2 gap-8 md:gap-10 mb-12 md:mb-20 items-center">
         <div class="md:order-2" data-aos="fade-left">
           <a href="commercial.html" class="inline-flex items-center gap-2 text-3xl font-semibold mb-4 text-[color:var(--accent)] hover:underline">
             Commercial Spaces
@@ -130,7 +146,7 @@ body.dark .team-card {
         <div class="md:order-1" data-aos="fade-right"><div class="project-slider" data-category="commercial"></div></div>
       </div>
 
-      <div class="grid md:grid-cols-2 gap-10 items-center">
+      <div class="grid md:grid-cols-2 gap-8 md:gap-10 items-center">
         <div data-aos="fade-right">
           <a href="interior.html" class="inline-flex items-center gap-2 text-3xl font-semibold mb-4 text-[color:var(--accent)] hover:underline">
             Interior Designs
@@ -154,19 +170,19 @@ body.dark .team-card {
       <h4 class="text-3xl font-semibold mb-8 text-[color:var(--accent)] text-center">Leadership & Team</h4>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center">
         <div class="team-card w-full max-w-sm text-center p-6 bg-[color:var(--card-light)] dark:bg-[color:var(--card-dark)] rounded-lg shadow-md" data-aos="fade-up">
-          <img src="assets/img/Leadership/Basheer.jpeg" class="w-40 h-40 object-cover mx-auto rounded-full mb-4">
+          <img src="assets/img/Leadership/Basheer.jpeg" class="w-40 h-40 object-cover object-top mx-auto rounded-full mb-4">
           <h5 class="text-2xl font-semibold mb-2">MD Bashir</h5>
           <p class="text-[color:var(--accent)] mb-2">Founder & Chief Architect</p>
           <p>“Planum Group was built on the belief that architecture should evoke emotion, not just admiration.”</p>
         </div>
         <div class="team-card w-full max-w-sm text-center p-6 bg-[color:var(--card-light)] dark:bg-[color:var(--card-dark)] rounded-lg shadow-md" data-aos="fade-up">
-          <img src="assets/img/Leadership/Anees.jpeg" class="w-40 h-40 object-cover mx-auto rounded-full mb-4">
+          <img src="assets/img/Leadership/Anees.jpeg" class="w-40 h-40 object-cover object-top mx-auto rounded-full mb-4">
           <h5 class="text-2xl font-semibold mb-2">Anees Ahmed</h5>
           <p class="text-[color:var(--accent)] mb-2">CEO</p>
           <p>“Every project at Planum Group is a story of collaboration, precision, and purpose.”</p>
         </div>
         <div class="team-card w-full max-w-sm text-center p-6 bg-[color:var(--card-light)] dark:bg-[color:var(--card-dark)] rounded-lg shadow-md" data-aos="fade-up">
-          <img src="assets/img/Leadership/Azeem.png" class="w-40 h-40 object-cover mx-auto rounded-full mb-4">
+          <img src="assets/img/Leadership/Azeem.png" class="w-40 h-40 object-cover object-top mx-auto rounded-full mb-4">
           <h5 class="text-2xl font-semibold mb-2">Azeem Ahmed</h5>
           <p class="text-[color:var(--accent)] mb-2">Director</p>
           <p>“Every project at Planum Group is a story of collaboration, precision, and purpose.”</p>
@@ -181,43 +197,43 @@ body.dark .team-card {
       <h3 class="text-4xl font-bold section-title mb-12">Testimonies & Impact</h3>
 
       <div class="grid md:grid-cols-3 gap-8 mb-16 text-center">
-        <div class="testimony-card p-6 rounded-lg bg-white text-slate-900 shadow-md" data-aos="fade-up">
+        <div class="testimony-card p-6 rounded-lg bg-white text-slate-900 dark:bg-[#111827] dark:text-slate-100 shadow-md" data-aos="fade-up">
           <p class="text-5xl font-extrabold text-[color:var(--accent)]">
             <span class="countup" data-count="200" data-suffix="+" data-duration="2200">1</span>
           </p>
           <p class="mt-2 text-lg font-semibold">Completed Projects</p>
-          <p class="text-sm text-slate-600">Residential, commercial, retail, and healthcare.</p>
+          <p class="text-sm text-slate-600 dark:text-slate-300">Residential, commercial, retail, and healthcare.</p>
         </div>
-        <div class="testimony-card p-6 rounded-lg bg-white text-slate-900 shadow-md" data-aos="fade-up" data-aos-delay="100">
+        <div class="testimony-card p-6 rounded-lg bg-white text-slate-900 dark:bg-[#111827] dark:text-slate-100 shadow-md" data-aos="fade-up" data-aos-delay="100">
           <p class="text-5xl font-extrabold text-[color:var(--accent)]">
             <span class="countup" data-count="120" data-suffix="+" data-duration="2000">1</span>
           </p>
           <p class="mt-2 text-lg font-semibold">Happy Clients</p>
-          <p class="text-sm text-slate-600">Long-term partnerships built on trust.</p>
+          <p class="text-sm text-slate-600 dark:text-slate-300">Long-term partnerships built on trust.</p>
         </div>
-        <div class="testimony-card p-6 rounded-lg bg-white text-slate-900 shadow-md" data-aos="fade-up" data-aos-delay="200">
+        <div class="testimony-card p-6 rounded-lg bg-white text-slate-900 dark:bg-[#111827] dark:text-slate-100 shadow-md" data-aos="fade-up" data-aos-delay="200">
           <p class="text-5xl font-extrabold text-[color:var(--accent)]">
             <span class="countup" data-count="28" data-suffix="+" data-duration="1600">1</span>
           </p>
           <p class="mt-2 text-lg font-semibold">Years of Design</p>
-          <p class="text-sm text-slate-600">Crafted spaces that stand the test of time.</p>
+          <p class="text-sm text-slate-600 dark:text-slate-300">Crafted spaces that stand the test of time.</p>
         </div>
       </div>
 
       <div class="grid md:grid-cols-3 gap-8">
-        <div class="testimony-card p-6 rounded-lg bg-white text-slate-900 shadow-md" data-aos="fade-up">
+        <div class="testimony-card p-6 rounded-lg bg-white text-slate-900 dark:bg-[#111827] dark:text-slate-100 shadow-md" data-aos="fade-up">
           <p class="text-sm uppercase tracking-widest text-[color:var(--accent)] mb-2">Residential Villa</p>
-          <p class="mb-4">“Planum Group translated our vision into a warm, functional home with incredible attention to detail.”</p>
+          <p class="mb-4 text-slate-700 dark:text-slate-300">“Planum Group translated our vision into a warm, functional home with incredible attention to detail.”</p>
           <p class="font-semibold">— Pearl Constructions, Hyderabad</p>
         </div>
-        <div class="testimony-card p-6 rounded-lg bg-white text-slate-900 shadow-md" data-aos="fade-up" data-aos-delay="100">
+        <div class="testimony-card p-6 rounded-lg bg-white text-slate-900 dark:bg-[#111827] dark:text-slate-100 shadow-md" data-aos="fade-up" data-aos-delay="100">
           <p class="text-sm uppercase tracking-widest text-[color:var(--accent)] mb-2">Corporate Office</p>
-          <p class="mb-4">“The workspace feels premium, productive, and welcoming — exactly what we needed for our team.”</p>
+          <p class="mb-4 text-slate-700 dark:text-slate-300">“The workspace feels premium, productive, and welcoming — exactly what we needed for our team.”</p>
           <p class="font-semibold">— Saqlain Hospital's</p>
         </div>
-        <div class="testimony-card p-6 rounded-lg bg-white text-slate-900 shadow-md" data-aos="fade-up" data-aos-delay="200">
+        <div class="testimony-card p-6 rounded-lg bg-white text-slate-900 dark:bg-[#111827] dark:text-slate-100 shadow-md" data-aos="fade-up" data-aos-delay="200">
           <p class="text-sm uppercase tracking-widest text-[color:var(--accent)] mb-2">Retail & Interiors</p>
-          <p class="mb-4">“They balanced aesthetics with practical flow, and our customers feel it every day.”</p>
+          <p class="mb-4 text-slate-700 dark:text-slate-300">“They balanced aesthetics with practical flow, and our customers feel it every day.”</p>
           <p class="font-semibold">— Amit, Retail Director</p>
         </div>
       </div>
@@ -237,7 +253,7 @@ body.dark .team-card {
           <p>Email: <a href="mailto:info.planumgroup@gmail.com" class="text-[color:var(--accent)]">info.planumgroup@gmail.com</a></p>
                 <div class="mt-6">
                     <iframe
-                        class="w-full h-64 rounded-lg"
+                        class="w-full h-64 sm:h-72 rounded-lg"
                         src="https://www.google.com/maps?q=PLANUM+GROUP&output=embed"
                         style="border:0;"
                         allowfullscreen=""
@@ -248,10 +264,10 @@ body.dark .team-card {
 
           <div class="mt-10">
             <h4 class="text-2xl font-semibold mb-4 text-[color:var(--accent)]">Connect</h4>
-            <div class="flex flex-wrap gap-4">
+            <div class="flex flex-col sm:flex-row gap-4">
               <a
                 href="https://wa.me/918977473757"
-                class="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[color:var(--accent)] text-white font-semibold hover:bg-[#1E293B] transition"
+                class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-[color:var(--accent)] text-white font-semibold hover:bg-[#1E293B] transition"
                 aria-label="Chat on WhatsApp"
               >
                 <svg class="w-5 h-5" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
@@ -264,7 +280,7 @@ body.dark .team-card {
                 href="https://www.instagram.com/_planumgroup_/"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 px-5 py-3 rounded-full border border-[color:var(--accent)] text-[color:var(--accent)] font-semibold hover:bg-[color:var(--accent)] hover:text-white transition"
+                class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full border border-[color:var(--accent)] text-[color:var(--accent)] font-semibold hover:bg-[color:var(--accent)] hover:text-white transition"
                 aria-label="Visit Instagram"
               >
                 <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -280,7 +296,7 @@ body.dark .team-card {
                 <iframe
                   title="Planum Group Instagram"
                   src="https://www.instagram.com/_planumgroup_/embed"
-                  class="w-full h-80"
+                  class="w-full h-72 sm:h-80"
                   loading="lazy"
                   referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
@@ -311,7 +327,7 @@ body.dark .team-card {
 
   <!-- Footer -->
   <footer class="bg-white dark:bg-[#0F172A] text-gray-600 dark:text-gray-400 py-6">
-    <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
       <p>&copy; <span id="year"></span> PLANUM GROUP. All rights reserved.</p>
       <button id="backToTop" class="border border-gray-400 px-4 py-2 rounded hover:bg-[color:var(--accent)] hover:text-white transition">Back to Top</button>
     </div>
@@ -338,6 +354,27 @@ body.dark .team-card {
       toggleBtn.textContent = dark ? '🌞' : '🌙';
       localStorage.setItem('theme', dark ? 'dark' : 'light');
     };
+
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const closeMobileMenu = () => {
+      if (!mobileMenu) return;
+      mobileMenu.classList.add('hidden');
+      mobileMenuBtn?.setAttribute('aria-expanded', 'false');
+    };
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        const expanded = !mobileMenu.classList.contains('hidden');
+        mobileMenuBtn.setAttribute('aria-expanded', String(expanded));
+      });
+      mobileMenu.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', closeMobileMenu);
+      });
+      window.addEventListener('resize', () => {
+        if (window.innerWidth >= 768) closeMobileMenu();
+      });
+    }
 
     // Hero slideshow
     const heroImgs = document.querySelectorAll('.hero-image');
