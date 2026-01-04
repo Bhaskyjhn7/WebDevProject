@@ -8,6 +8,7 @@
   <meta property="og:title" content="PLANUM GROUP" />
   <meta property="og:description" content="Architecture • Interiors • Developers | Hyderabad" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <script>tailwind.config = { darkMode: 'class' }</script>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
   <style>
@@ -28,7 +29,7 @@
       transition: all 0.6s ease;
       padding-top: var(--header-height);
     }
-    body.dark {
+    html.dark {
       font-family: 'Poppins', sans-serif;
       background: var(--bg-dark);
       color: var(--text-dark);
@@ -37,7 +38,7 @@
     .hero-image { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.05); transition: opacity 1.2s ease-in-out, transform 8s ease-in-out; }
     .hero-image.active { opacity: 1; transform: scale(1.1); }
     .project-slider { position: relative; width: 100%; height: 22rem; border-radius: 0.75rem; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.15); background: var(--card-light); }
-    body.dark .project-slider { background: var(--card-dark); }
+    html.dark .project-slider { background: var(--card-dark); }
     .project-slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.05); transition: opacity 1.2s ease-in-out, transform 10s ease-in-out; }
     .project-slide.active { opacity: 1; transform: scale(1.1); }
     .theme-toggle { cursor: pointer; font-size: 1.5rem; transition: transform 0.3s ease; }
@@ -49,21 +50,21 @@
 
     /* --- Dark Mode Readability for Team Section --- */
 /* Enhanced readability for dark mode team cards */
-body.dark .team-card {
+html.dark .team-card {
   color: #D1D5DB; /* Balanced warm gray for paragraphs */
   font-family: 'Poppins', sans-serif;
 }
 
-body.dark .team-card h5 {
+html.dark .team-card h5 {
   color: #F3EED9; /* Ivory-gold for names (more contrast) */
   font-weight: 700;
 }
 
-body.dark .team-card p {
+html.dark .team-card p {
   color: #D1D5DB; /* Medium contrast for text */
 }
 
-body.dark .team-card {
+html.dark .team-card {
   background-color: #162033; /* darker than #1E293B for contrast */
 }
 
@@ -170,23 +171,23 @@ body.dark .team-card {
 
       <h4 class="text-3xl font-semibold mb-8 text-[color:var(--accent)] text-center">Leadership & Team</h4>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center">
-        <div class="team-card w-full max-w-sm text-center p-6 bg-[color:var(--card-light)] dark:bg-[color:var(--card-dark)] rounded-lg shadow-md" data-aos="fade-up">
+        <div class="team-card w-full max-w-sm text-center p-6 bg-[color:var(--card-light)] dark:bg-[color:var(--card-dark)] text-slate-900 dark:text-slate-100 rounded-lg shadow-md" data-aos="fade-up">
           <img src="assets/img/Leadership/Basheer.jpeg" class="w-40 h-40 object-contain bg-[#0B1220]/5 dark:bg-white/5 mx-auto rounded-full mb-4 p-1">
           <h5 class="text-2xl font-semibold mb-2">MD Bashir</h5>
           <p class="text-[color:var(--accent)] mb-2">Founder & Chief Architect</p>
-          <p>“Planum Group was built on the belief that architecture should evoke emotion, not just admiration.”</p>
+          <p class="text-slate-600 dark:text-slate-300">“Planum Group was built on the belief that architecture should evoke emotion, not just admiration.”</p>
         </div>
-        <div class="team-card w-full max-w-sm text-center p-6 bg-[color:var(--card-light)] dark:bg-[color:var(--card-dark)] rounded-lg shadow-md" data-aos="fade-up">
+        <div class="team-card w-full max-w-sm text-center p-6 bg-[color:var(--card-light)] dark:bg-[color:var(--card-dark)] text-slate-900 dark:text-slate-100 rounded-lg shadow-md" data-aos="fade-up">
           <img src="assets/img/Leadership/Anees.jpeg" class="w-40 h-40 object-contain bg-[#0B1220]/5 dark:bg-white/5 mx-auto rounded-full mb-4 p-1">
           <h5 class="text-2xl font-semibold mb-2">Anees Ahmed</h5>
           <p class="text-[color:var(--accent)] mb-2">CEO</p>
-          <p>“Leading with clarity and craftsmanship, we turn ambitious ideas into buildable, timeless spaces.”</p>
+          <p class="text-slate-600 dark:text-slate-300">“Leading with clarity and craftsmanship, we turn ambitious ideas into buildable, timeless spaces.”</p>
         </div>
-        <div class="team-card w-full max-w-sm text-center p-6 bg-[color:var(--card-light)] dark:bg-[color:var(--card-dark)] rounded-lg shadow-md" data-aos="fade-up">
+        <div class="team-card w-full max-w-sm text-center p-6 bg-[color:var(--card-light)] dark:bg-[color:var(--card-dark)] text-slate-900 dark:text-slate-100 rounded-lg shadow-md" data-aos="fade-up">
           <img src="assets/img/Leadership/Azeem.png" class="w-40 h-40 object-contain bg-[#0B1220]/5 dark:bg-white/5 mx-auto rounded-full mb-4 p-1">
           <h5 class="text-2xl font-semibold mb-2">Azeem Ahmed</h5>
           <p class="text-[color:var(--accent)] mb-2">Director</p>
-          <p>“From planning to execution, we focus on details, timelines, and quality—so every project delivers with confidence.”</p>
+          <p class="text-slate-600 dark:text-slate-300">“From planning to execution, we focus on details, timelines, and quality—so every project delivers with confidence.”</p>
         </div>
       </div>
     </div>
@@ -346,12 +347,12 @@ body.dark .team-card {
     document.getElementById('exploreBtn').onclick = () => gsap.to(window, {duration: 1, scrollTo: '#projects'});
 
     const toggleBtn = document.getElementById('themeToggle');
-    const body = document.body;
+    const root = document.documentElement;
     const saved = localStorage.getItem('theme');
-    if (saved === 'dark') { body.classList.add('dark'); toggleBtn.textContent = '🌞'; }
+    if (saved === 'dark') { root.classList.add('dark'); toggleBtn.textContent = '🌞'; }
     toggleBtn.onclick = () => {
-      body.classList.toggle('dark');
-      const dark = body.classList.contains('dark');
+      root.classList.toggle('dark');
+      const dark = root.classList.contains('dark');
       toggleBtn.textContent = dark ? '🌞' : '🌙';
       localStorage.setItem('theme', dark ? 'dark' : 'light');
     };
