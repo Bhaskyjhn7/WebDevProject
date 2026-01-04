@@ -15,10 +15,10 @@
       --bg-light: linear-gradient(to bottom, #F9F6F1, #FFFFFF);
       --bg-dark: linear-gradient(to bottom, #0F172A, #1E293B);
       --text-light: #1E293B;
-      --text-dark: #F3EDE3;
+      --text-dark: #E5E7EB;
       --accent: #D4A373;
       --card-light: #FFFFFF;
-      --card-dark: #1E293B;
+      --card-dark: #111827;
       --header-height: 80px;
     }
     body {
@@ -71,18 +71,18 @@ body.dark .team-card {
 </head>
 <body class="overflow-x-hidden">
   <!-- Header -->
-  <header class="fixed top-0 left-0 w-full bg-white/70 dark:bg-[#0F172A]/70 backdrop-blur-md z-20 shadow relative">
-    <div class="max-w-7xl mx-auto flex justify-between items-center px-4 md:px-6 py-4">
+  <header class="fixed top-0 left-0 w-full bg-white/95 dark:bg-[#0B1220]/95 backdrop-blur-md z-20 shadow relative">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-4 md:px-6 py-4 text-slate-900 dark:text-slate-100">
       <div class="flex items-center gap-3">
         <img src="assets/img/Logo.jpeg" alt="Planum Group logo" class="h-10 w-10 object-contain">
         <h1 class="text-2xl font-bold text-[color:var(--text-light)] dark:text-[color:var(--accent)]">PLANUM GROUP</h1>
       </div>
       <nav class="flex items-center space-x-6">
         <ul class="hidden md:flex space-x-8 text-lg">
-          <li><a href="#hero" class="hover:text-[color:var(--accent)] transition">Home</a></li>
-          <li><a href="#projects" class="hover:text-[color:var(--accent)] transition">Projects</a></li>
-          <li><a href="#about" class="hover:text-[color:var(--accent)] transition">About</a></li>
-          <li><a href="#contact" class="hover:text-[color:var(--accent)] transition">Contact</a></li>
+          <li><a href="#hero" class="text-slate-900 dark:text-slate-100 hover:text-[color:var(--accent)] transition">Home</a></li>
+          <li><a href="#projects" class="text-slate-900 dark:text-slate-100 hover:text-[color:var(--accent)] transition">Projects</a></li>
+          <li><a href="#about" class="text-slate-900 dark:text-slate-100 hover:text-[color:var(--accent)] transition">About</a></li>
+          <li><a href="#contact" class="text-slate-900 dark:text-slate-100 hover:text-[color:var(--accent)] transition">Contact</a></li>
         </ul>
         <button id="themeToggle" class="theme-toggle ml-2 md:ml-6">🌙</button>
         <button id="mobileMenuBtn" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-full border border-gray-300 dark:border-gray-600 hover:border-[color:var(--accent)] transition" aria-label="Open menu" aria-expanded="false">
@@ -92,15 +92,16 @@ body.dark .team-card {
         </button>
       </nav>
     </div>
-    <div id="mobileMenu" class="md:hidden hidden absolute top-full left-0 w-full bg-white/95 dark:bg-[#0F172A]/95 backdrop-blur-md border-t border-gray-200 dark:border-gray-700 shadow-lg">
+    <div id="mobileMenu" class="md:hidden hidden absolute top-full left-0 w-full bg-white dark:bg-[#0B1220] border-t border-gray-200 dark:border-gray-700 shadow-lg">
       <div class="px-6 py-5 flex flex-col gap-4 text-lg">
-        <a href="#hero" class="hover:text-[color:var(--accent)] transition">Home</a>
-        <a href="#projects" class="hover:text-[color:var(--accent)] transition">Projects</a>
-        <a href="#about" class="hover:text-[color:var(--accent)] transition">About</a>
-        <a href="#contact" class="hover:text-[color:var(--accent)] transition">Contact</a>
+        <a href="#hero" class="text-slate-900 dark:text-slate-100 hover:text-[color:var(--accent)] transition">Home</a>
+        <a href="#projects" class="text-slate-900 dark:text-slate-100 hover:text-[color:var(--accent)] transition">Projects</a>
+        <a href="#about" class="text-slate-900 dark:text-slate-100 hover:text-[color:var(--accent)] transition">About</a>
+        <a href="#contact" class="text-slate-900 dark:text-slate-100 hover:text-[color:var(--accent)] transition">Contact</a>
       </div>
     </div>
   </header>
+  <div id="menuBackdrop" class="hidden fixed inset-0 bg-black/50 z-10"></div>
 
   <!-- Hero Section -->
   <section id="hero" class="min-h-screen grid md:grid-cols-2 items-center relative overflow-hidden py-10 md:py-0">
@@ -170,22 +171,22 @@ body.dark .team-card {
       <h4 class="text-3xl font-semibold mb-8 text-[color:var(--accent)] text-center">Leadership & Team</h4>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center">
         <div class="team-card w-full max-w-sm text-center p-6 bg-[color:var(--card-light)] dark:bg-[color:var(--card-dark)] rounded-lg shadow-md" data-aos="fade-up">
-          <img src="assets/img/Leadership/Basheer.jpeg" class="w-40 h-40 object-cover object-top mx-auto rounded-full mb-4">
+          <img src="assets/img/Leadership/Basheer.jpeg" class="w-40 h-40 object-contain bg-[#0B1220]/5 dark:bg-white/5 mx-auto rounded-full mb-4 p-1">
           <h5 class="text-2xl font-semibold mb-2">MD Bashir</h5>
           <p class="text-[color:var(--accent)] mb-2">Founder & Chief Architect</p>
           <p>“Planum Group was built on the belief that architecture should evoke emotion, not just admiration.”</p>
         </div>
         <div class="team-card w-full max-w-sm text-center p-6 bg-[color:var(--card-light)] dark:bg-[color:var(--card-dark)] rounded-lg shadow-md" data-aos="fade-up">
-          <img src="assets/img/Leadership/Anees.jpeg" class="w-40 h-40 object-cover object-top mx-auto rounded-full mb-4">
+          <img src="assets/img/Leadership/Anees.jpeg" class="w-40 h-40 object-contain bg-[#0B1220]/5 dark:bg-white/5 mx-auto rounded-full mb-4 p-1">
           <h5 class="text-2xl font-semibold mb-2">Anees Ahmed</h5>
           <p class="text-[color:var(--accent)] mb-2">CEO</p>
-          <p>“Every project at Planum Group is a story of collaboration, precision, and purpose.”</p>
+          <p>“Leading with clarity and craftsmanship, we turn ambitious ideas into buildable, timeless spaces.”</p>
         </div>
         <div class="team-card w-full max-w-sm text-center p-6 bg-[color:var(--card-light)] dark:bg-[color:var(--card-dark)] rounded-lg shadow-md" data-aos="fade-up">
-          <img src="assets/img/Leadership/Azeem.png" class="w-40 h-40 object-cover object-top mx-auto rounded-full mb-4">
+          <img src="assets/img/Leadership/Azeem.png" class="w-40 h-40 object-contain bg-[#0B1220]/5 dark:bg-white/5 mx-auto rounded-full mb-4 p-1">
           <h5 class="text-2xl font-semibold mb-2">Azeem Ahmed</h5>
           <p class="text-[color:var(--accent)] mb-2">Director</p>
-          <p>“Every project at Planum Group is a story of collaboration, precision, and purpose.”</p>
+          <p>“From planning to execution, we focus on details, timelines, and quality—so every project delivers with confidence.”</p>
         </div>
       </div>
     </div>
@@ -199,7 +200,7 @@ body.dark .team-card {
       <div class="grid md:grid-cols-3 gap-8 mb-16 text-center">
         <div class="testimony-card p-6 rounded-lg bg-white text-slate-900 dark:bg-[#111827] dark:text-slate-100 shadow-md" data-aos="fade-up">
           <p class="text-5xl font-extrabold text-[color:var(--accent)]">
-            <span class="countup" data-count="200" data-suffix="+" data-duration="2200">1</span>
+            <span class="countup" data-count="500" data-suffix="+" data-duration="2200">1</span>
           </p>
           <p class="mt-2 text-lg font-semibold">Completed Projects</p>
           <p class="text-sm text-slate-600 dark:text-slate-300">Residential, commercial, retail, and healthcare.</p>
@@ -209,7 +210,7 @@ body.dark .team-card {
             <span class="countup" data-count="120" data-suffix="+" data-duration="2000">1</span>
           </p>
           <p class="mt-2 text-lg font-semibold">Happy Clients</p>
-          <p class="text-sm text-slate-600 dark:text-slate-300">Long-term partnerships built on trust.</p>
+          <p class="text-sm text-slate-600 dark:text-slate-300">Trusted by teams and homeowners across Hyderabad.</p>
         </div>
         <div class="testimony-card p-6 rounded-lg bg-white text-slate-900 dark:bg-[#111827] dark:text-slate-100 shadow-md" data-aos="fade-up" data-aos-delay="200">
           <p class="text-5xl font-extrabold text-[color:var(--accent)]">
@@ -234,7 +235,7 @@ body.dark .team-card {
         <div class="testimony-card p-6 rounded-lg bg-white text-slate-900 dark:bg-[#111827] dark:text-slate-100 shadow-md" data-aos="fade-up" data-aos-delay="200">
           <p class="text-sm uppercase tracking-widest text-[color:var(--accent)] mb-2">Retail & Interiors</p>
           <p class="mb-4 text-slate-700 dark:text-slate-300">“They balanced aesthetics with practical flow, and our customers feel it every day.”</p>
-          <p class="font-semibold">— Amit, Retail Director</p>
+          <p class="font-semibold">— Amit, Amin</p>
         </div>
       </div>
     </div>
@@ -357,20 +358,34 @@ body.dark .team-card {
 
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
+    const menuBackdrop = document.getElementById('menuBackdrop');
+    const openMobileMenu = () => {
+      if (!mobileMenu || !menuBackdrop) return;
+      mobileMenu.classList.remove('hidden');
+      menuBackdrop.classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
+      mobileMenuBtn?.setAttribute('aria-expanded', 'true');
+    };
     const closeMobileMenu = () => {
-      if (!mobileMenu) return;
+      if (!mobileMenu || !menuBackdrop) return;
       mobileMenu.classList.add('hidden');
+      menuBackdrop.classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
       mobileMenuBtn?.setAttribute('aria-expanded', 'false');
     };
-    if (mobileMenuBtn && mobileMenu) {
+    if (mobileMenuBtn && mobileMenu && menuBackdrop) {
       mobileMenuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-        const expanded = !mobileMenu.classList.contains('hidden');
-        mobileMenuBtn.setAttribute('aria-expanded', String(expanded));
+        const isHidden = mobileMenu.classList.contains('hidden');
+        if (isHidden) {
+          openMobileMenu();
+        } else {
+          closeMobileMenu();
+        }
       });
       mobileMenu.querySelectorAll('a').forEach((link) => {
         link.addEventListener('click', closeMobileMenu);
       });
+      menuBackdrop.addEventListener('click', closeMobileMenu);
       window.addEventListener('resize', () => {
         if (window.innerWidth >= 768) closeMobileMenu();
       });
