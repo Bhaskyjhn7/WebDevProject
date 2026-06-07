@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,490 +7,877 @@
   <meta name="description" content="Planum Group is a Hyderabad-based architecture, interiors, and development studio delivering over 500 projects since 1996." />
   <meta property="og:title" content="PLANUM GROUP" />
   <meta property="og:description" content="Architecture • Interiors • Developers | Hyderabad" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
-  <script>tailwind.config = { darkMode: 'class' }</script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    /* ═══════════════════════════════════════════════
+       PLANUM GROUP — Luxury Redesign v2
+       Dark / Light Theme + Full Mobile Support
+       ═══════════════════════════════════════════════ */
+
+    /* ── Theme Variables ── */
     :root {
-      --bg-light: linear-gradient(to bottom, #F9F6F1, #FFFFFF);
-      --bg-dark: linear-gradient(to bottom, #0F172A, #1E293B);
-      --text-light: #1E293B;
-      --text-dark: #E5E7EB;
-      --accent: #D4A373;
-      --card-light: #FFFFFF;
-      --card-dark: #111827;
-      --header-height: 80px;
+      --gold: #C9A96E;
+      --gold-light: #DFC89A;
+      --gold-dim: #8B7A4E;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Outfit', system-ui, sans-serif;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-theme: background 0.5s var(--ease-smooth), color 0.5s var(--ease-smooth), border-color 0.5s var(--ease-smooth), box-shadow 0.5s var(--ease-smooth);
     }
+
+    /* ── Dark Theme (default) ── */
+    [data-theme="dark"] {
+      --bg-primary: #0C0C0C;
+      --bg-secondary: #141414;
+      --bg-card: #1A1A1A;
+      --bg-elevated: #222222;
+      --text-primary: #F0EDE6;
+      --text-secondary: #A8A49C;
+      --text-muted: #6B6760;
+      --border-subtle: rgba(201,169,110,0.08);
+      --border-medium: rgba(201,169,110,0.15);
+      --shadow-card: 0 4px 24px rgba(0,0,0,0.3);
+      --header-bg: rgba(12,12,12,0.92);
+      --overlay-top: rgba(12,12,12,0.35);
+      --overlay-mid: rgba(12,12,12,0.2);
+      --overlay-low: rgba(12,12,12,0.6);
+      --overlay-bottom: rgba(12,12,12,0.95);
+      --service-num: rgba(201,169,110,0.08);
+      --service-num-hover: rgba(201,169,110,0.15);
+      --quote-mark: rgba(201,169,110,0.1);
+      --grain-opacity: 0.025;
+      --map-filter: grayscale(0.8) contrast(1.1) brightness(0.7);
+      --map-filter-hover: grayscale(0.3) contrast(1) brightness(0.85);
+      --hero-title-color: #FFFFFF;
+      --toggle-icon: "☀️";
+    }
+
+    /* ── Light Theme ── */
+    [data-theme="light"] {
+      --bg-primary: #F8F5EF;
+      --bg-secondary: #EFEBE3;
+      --bg-card: #FFFFFF;
+      --bg-elevated: #FFFFFF;
+      --text-primary: #1A1815;
+      --text-secondary: #5C574E;
+      --text-muted: #9B958A;
+      --border-subtle: rgba(26,24,21,0.06);
+      --border-medium: rgba(26,24,21,0.1);
+      --shadow-card: 0 4px 24px rgba(0,0,0,0.06);
+      --header-bg: rgba(248,245,239,0.92);
+      --overlay-top: rgba(248,245,239,0.3);
+      --overlay-mid: rgba(248,245,239,0.05);
+      --overlay-low: rgba(0,0,0,0.35);
+      --overlay-bottom: rgba(0,0,0,0.7);
+      --service-num: rgba(201,169,110,0.06);
+      --service-num-hover: rgba(201,169,110,0.12);
+      --quote-mark: rgba(201,169,110,0.12);
+      --grain-opacity: 0.015;
+      --map-filter: grayscale(0.2) contrast(1) brightness(1);
+      --map-filter-hover: grayscale(0) contrast(1) brightness(1);
+      --hero-title-color: #FFFFFF;
+      --toggle-icon: "🌙";
+    }
+
+    /* ── Reset & Base ── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; scrollbar-width: thin; scrollbar-color: var(--gold-dim) var(--bg-primary); }
     body {
-      font-family: 'Poppins', sans-serif;
-      background: var(--bg-light);
-      color: var(--text-light);
-      transition: all 0.6s ease;
-      padding-top: var(--header-height);
+      font-family: var(--font-body);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+      transition: var(--transition-theme);
     }
-    html.dark {
-      font-family: 'Poppins', sans-serif;
-      background: var(--bg-dark);
-      color: var(--text-dark);
+    ::selection { background: var(--gold); color: var(--bg-primary); }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    .container { max-width: 1400px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 4rem); }
+
+    /* ── Reveal Animations ── */
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+    .reveal-d4 { transition-delay: 0.4s; }
+
+    /* ══════════════════════════════
+       HEADER
+       ══════════════════════════════ */
+    .site-header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1.25rem 0;
+      transition: background 0.4s var(--ease-smooth), padding 0.4s var(--ease-smooth), backdrop-filter 0.4s, border-color 0.4s;
     }
-    .section-title { border-left: 4px solid var(--accent); padding-left: 0.5rem; }
-    .hero-image { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.05); transition: opacity 1.2s ease-in-out, transform 8s ease-in-out; }
-    .hero-image.active { opacity: 1; transform: scale(1.1); }
-    .project-slider { position: relative; width: 100%; height: 22rem; border-radius: 0.75rem; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.15); background: var(--card-light); }
-    html.dark .project-slider { background: var(--card-dark); }
-    .project-slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.05); transition: opacity 1.2s ease-in-out, transform 10s ease-in-out; }
-    .project-slide.active { opacity: 1; transform: scale(1.1); }
-    .theme-toggle { cursor: pointer; font-size: 1.5rem; transition: transform 0.3s ease; }
-    .theme-toggle:hover { transform: rotate(20deg); }
-    @media (max-width: 767px) {
-      .project-slider { height: auto; aspect-ratio: 4 / 3; min-height: 16rem; }
-      :root { --header-height: 72px; }
+    .site-header.scrolled {
+      background: var(--header-bg);
+      backdrop-filter: blur(20px) saturate(1.4);
+      -webkit-backdrop-filter: blur(20px) saturate(1.4);
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .header-inner { display: flex; justify-content: space-between; align-items: center; }
+    .logo-group { display: flex; align-items: center; gap: 0.875rem; }
+    .logo-img { width: 42px; height: 42px; object-fit: contain; border-radius: 6px; }
+    .logo-text { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; letter-spacing: 0.15em; color: var(--gold); }
+
+    .nav-links { display: flex; align-items: center; gap: 2.25rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.78rem; font-weight: 400; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--text-secondary); transition: color 0.3s; position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 1px; background: var(--gold); transition: width 0.4s var(--ease-out);
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-cta {
+      font-size: 0.72rem !important; letter-spacing: 0.14em !important;
+      padding: 0.55rem 1.4rem; border: 1px solid var(--gold-dim);
+      color: var(--gold) !important; transition: all 0.35s var(--ease-smooth) !important;
+    }
+    .nav-cta:hover { background: var(--gold); color: var(--bg-primary) !important; border-color: var(--gold); }
+    .nav-cta::after { display: none !important; }
+
+    /* Theme Toggle */
+    .theme-toggle {
+      background: none; border: 1px solid var(--border-medium); color: var(--text-secondary);
+      width: 38px; height: 38px; border-radius: 50%; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; transition: all 0.35s var(--ease-smooth);
+    }
+    .theme-toggle:hover { border-color: var(--gold); color: var(--gold); transform: rotate(15deg); }
+
+    /* Mobile menu button */
+    .mobile-toggle {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 6px;
+    }
+    .mobile-toggle span { display: block; width: 24px; height: 1.5px; background: var(--text-primary); transition: all 0.3s; }
+
+    .mobile-menu {
+      display: none; position: fixed; inset: 0;
+      background: var(--bg-primary); z-index: 999;
+      flex-direction: column; justify-content: center; align-items: center; gap: 2.5rem;
+      transition: var(--transition-theme);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-family: var(--font-display); font-size: 2rem; color: var(--text-secondary); transition: color 0.3s; }
+    .mobile-menu a:hover { color: var(--gold); }
+    .mobile-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: var(--text-secondary); font-size: 2rem; cursor: pointer; }
+    .mobile-theme-btn { margin-top: 1rem; }
+
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .mobile-toggle { display: flex; }
     }
 
-    /* --- Dark Mode Readability for Team Section --- */
-/* Enhanced readability for dark mode team cards */
-html.dark .team-card {
-  color: #D1D5DB; /* Balanced warm gray for paragraphs */
-  font-family: 'Poppins', sans-serif;
-}
+    /* ══════════════════════════════
+       HERO
+       ══════════════════════════════ */
+    .hero { position: relative; height: 100vh; min-height: 600px; display: flex; align-items: flex-end; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; }
+    .hero-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1.8s ease-in-out; }
+    .hero-slide.active { opacity: 1; }
+    .hero-slide img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, var(--overlay-bottom) 0%, var(--overlay-low) 35%, var(--overlay-mid) 60%, var(--overlay-top) 100%);
+      transition: background 0.6s var(--ease-smooth);
+    }
+    .hero-content { position: relative; z-index: 2; width: 100%; padding-bottom: clamp(3rem, 8vh, 8rem); }
+    .hero-tag {
+      font-size: 0.7rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 1rem;
+    }
+    .hero-tag::before { content: ''; width: 40px; height: 1px; background: var(--gold); }
+    .hero-title {
+      font-family: var(--font-display); font-size: clamp(2.8rem, 7vw, 6.5rem);
+      font-weight: 300; line-height: 1.05; letter-spacing: -0.02em;
+      color: var(--hero-title-color); margin-bottom: 1.5rem;
+    }
+    .hero-title em { font-style: italic; color: var(--gold-light); }
+    .hero-subtitle {
+      font-size: 1rem; font-weight: 300; color: rgba(255,255,255,0.7);
+      max-width: 520px; line-height: 1.7; margin-bottom: 2.5rem;
+    }
+    .hero-stats {
+      display: flex; gap: clamp(1.5rem, 5vw, 4rem);
+      padding-top: 2rem; border-top: 1px solid rgba(201,169,110,0.15); flex-wrap: wrap;
+    }
+    .hero-stat-num { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 300; color: var(--gold); line-height: 1; }
+    .hero-stat-label { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-top: 0.4rem; }
+    .hero-scroll {
+      position: absolute; bottom: 2rem; right: clamp(1.5rem, 4vw, 4rem); z-index: 2;
+      writing-mode: vertical-rl; font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: rgba(255,255,255,0.3); display: flex; align-items: center; gap: 1rem;
+    }
+    .hero-scroll::after { content: ''; width: 1px; height: 50px; background: linear-gradient(to bottom, var(--gold-dim), transparent); animation: scrollPulse 2s ease-in-out infinite; }
+    @keyframes scrollPulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
 
-html.dark .team-card h5 {
-  color: #F3EED9; /* Ivory-gold for names (more contrast) */
-  font-weight: 700;
-}
+    @media (max-width: 600px) {
+      .hero { min-height: 100svh; }
+      .hero-scroll { display: none; }
+    }
 
-html.dark .team-card p {
-  color: #D1D5DB; /* Medium contrast for text */
-}
+    /* ══════════════════════════════
+       SHARED SECTION STYLES
+       ══════════════════════════════ */
+    .section { padding: clamp(4rem, 10vh, 8rem) 0; }
+    .section-tag {
+      font-size: 0.7rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold);
+      margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;
+    }
+    .section-tag::before { content: ''; width: 28px; height: 1px; background: var(--gold); }
+    .section-title {
+      font-family: var(--font-display); font-size: clamp(2rem, 4.5vw, 3.8rem);
+      font-weight: 400; line-height: 1.15; margin-bottom: 1.25rem;
+    }
+    .section-desc { font-size: 0.95rem; font-weight: 300; color: var(--text-secondary); max-width: 560px; line-height: 1.75; }
+    .divider { width: 100%; height: 1px; background: linear-gradient(to right, transparent, var(--border-medium), transparent); }
 
-html.dark .team-card {
-  background-color: #162033; /* darker than #1E293B for contrast */
-}
+    /* ══════════════════════════════
+       SERVICES
+       ══════════════════════════════ */
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border-subtle); margin-top: 3.5rem; }
+    .service-card {
+      background: var(--bg-primary); padding: clamp(1.75rem, 4vw, 3.5rem);
+      position: relative; overflow: hidden; transition: background 0.5s var(--ease-smooth);
+    }
+    .service-card:hover { background: var(--bg-secondary); }
+    .service-num {
+      font-family: var(--font-display); font-size: 3.5rem; font-weight: 300;
+      color: var(--service-num); position: absolute; top: 1rem; right: 1.5rem; line-height: 1;
+      transition: color 0.5s;
+    }
+    .service-card:hover .service-num { color: var(--service-num-hover); }
+    .service-icon { width: 40px; height: 40px; margin-bottom: 1.25rem; stroke: var(--gold); fill: none; stroke-width: 1.2; }
+    .service-title { font-family: var(--font-display); font-size: 1.5rem; font-weight: 500; margin-bottom: 0.85rem; }
+    .service-desc { font-size: 0.88rem; font-weight: 300; color: var(--text-secondary); line-height: 1.7; }
 
+    @media (max-width: 768px) { .services-grid { grid-template-columns: 1fr; } }
+
+    /* ══════════════════════════════
+       PROJECTS
+       ══════════════════════════════ */
+    .project-row {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 4vw, 4rem); align-items: center;
+      margin-bottom: clamp(3rem, 8vh, 7rem);
+    }
+    .project-row.reverse .project-visual { order: 2; }
+    .project-row.reverse .project-info { order: 1; }
+
+    .project-visual { position: relative; overflow: hidden; aspect-ratio: 4/3; background: var(--bg-card); }
+    .project-visual img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s var(--ease-out); }
+    .project-visual:hover img { transform: scale(1.05); }
+    .project-visual::after {
+      content: ''; position: absolute; inset: 0;
+      border: 1px solid var(--border-subtle); pointer-events: none; transition: border-color 0.4s;
+    }
+    .project-visual:hover::after { border-color: var(--border-medium); }
+
+    .project-slider-wrap { position: relative; width: 100%; height: 100%; }
+    .project-slider-wrap img {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+      opacity: 0; transition: opacity 1.2s ease-in-out;
+    }
+    .project-slider-wrap img.active { opacity: 1; }
+
+    .project-info { padding: clamp(0.5rem, 3vw, 2rem) 0; }
+    .project-category { font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+    .project-name { font-family: var(--font-display); font-size: clamp(1.6rem, 3.5vw, 2.8rem); font-weight: 400; margin-bottom: 1rem; line-height: 1.2; }
+    .project-desc { font-size: 0.92rem; font-weight: 300; color: var(--text-secondary); line-height: 1.75; margin-bottom: 1.75rem; }
+    .project-link {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      font-size: 0.73rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); transition: gap 0.3s var(--ease-out);
+    }
+    .project-link:hover { gap: 1.25rem; }
+    .project-link svg { width: 20px; height: 20px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+
+    @media (max-width: 768px) {
+      .project-row { grid-template-columns: 1fr; }
+      .project-row.reverse .project-visual, .project-row.reverse .project-info { order: unset; }
+    }
+
+    /* ══════════════════════════════
+       IMPACT NUMBERS
+       ══════════════════════════════ */
+    .impact-section { background: var(--bg-secondary); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle); transition: var(--transition-theme); }
+    .impact-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border-subtle); }
+    .impact-item { background: var(--bg-secondary); padding: clamp(1.75rem, 4vw, 3.5rem); text-align: center; transition: var(--transition-theme); }
+    .impact-num { font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 4rem); font-weight: 300; color: var(--gold); line-height: 1; margin-bottom: 0.5rem; }
+    .impact-label { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); }
+    @media (max-width: 768px) { .impact-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    /* ══════════════════════════════
+       PROCESS
+       ══════════════════════════════ */
+    .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-top: 3.5rem; }
+    .process-step { position: relative; padding-top: 2rem; }
+    .process-step::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 1px; background: linear-gradient(to right, var(--gold-dim), transparent); }
+    .step-num { font-family: var(--font-display); font-size: 0.85rem; color: var(--gold); margin-bottom: 1rem; letter-spacing: 0.1em; }
+    .step-title { font-family: var(--font-display); font-size: 1.3rem; font-weight: 500; margin-bottom: 0.75rem; }
+    .step-desc { font-size: 0.85rem; font-weight: 300; color: var(--text-secondary); line-height: 1.7; }
+    @media (max-width: 768px) { .process-steps { grid-template-columns: 1fr 1fr; gap: 1.5rem; } }
+    @media (max-width: 480px) { .process-steps { grid-template-columns: 1fr; } }
+
+    /* ══════════════════════════════
+       LEADERSHIP
+       ══════════════════════════════ */
+    .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.5rem, 3vw, 2.5rem); margin-top: 3.5rem; }
+    .team-member { text-align: center; }
+    .team-photo-wrap {
+      position: relative; width: 170px; height: 170px; margin: 0 auto 1.5rem; overflow: hidden;
+    }
+    .team-photo-wrap::before {
+      content: ''; position: absolute; inset: -2px; border: 1px solid var(--border-medium);
+      border-radius: 50%; z-index: 1;
+    }
+    .team-photo-wrap img {
+      width: 100%; height: 100%; object-fit: contain; border-radius: 50%;
+      background: var(--bg-card); transition: transform 0.6s var(--ease-out), var(--transition-theme);
+    }
+    .team-member:hover .team-photo-wrap img { transform: scale(1.05); }
+    .team-name { font-family: var(--font-display); font-size: 1.35rem; font-weight: 500; margin-bottom: 0.25rem; }
+    .team-role { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+    .team-quote { font-family: var(--font-display); font-style: italic; font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6; max-width: 300px; margin: 0 auto; }
+    @media (max-width: 768px) { .team-grid { grid-template-columns: 1fr; gap: 3rem; } }
+
+    /* ══════════════════════════════
+       TESTIMONIALS
+       ══════════════════════════════ */
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border-subtle); margin-top: 3.5rem; }
+    .testimonial-card { background: var(--bg-primary); padding: clamp(1.75rem, 4vw, 3rem); position: relative; transition: var(--transition-theme); }
+    .testimonial-card::before {
+      content: '\201C'; font-family: var(--font-display); font-size: 5rem;
+      color: var(--quote-mark); position: absolute; top: 0.5rem; left: 1.5rem; line-height: 1;
+    }
+    .testimonial-type { font-size: 0.63rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem; }
+    .testimonial-text { font-family: var(--font-display); font-size: 1.02rem; font-style: italic; font-weight: 400; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.5rem; }
+    .testimonial-author { font-size: 0.8rem; font-weight: 500; color: var(--text-primary); }
+    @media (max-width: 768px) { .testimonials-grid { grid-template-columns: 1fr; } }
+
+    /* ══════════════════════════════
+       CONTACT
+       ══════════════════════════════ */
+    .contact-section { background: var(--bg-secondary); border-top: 1px solid var(--border-subtle); transition: var(--transition-theme); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2.5rem, 6vw, 6rem); margin-top: 3.5rem; }
+    .contact-detail { margin-bottom: 1.75rem; }
+    .contact-label { font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+    .contact-value { font-size: 0.95rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; }
+    .contact-value a { transition: color 0.3s; }
+    .contact-value a:hover { color: var(--gold); }
+
+    .contact-actions { display: flex; gap: 0.875rem; margin-top: 2.25rem; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      padding: 0.8rem 1.75rem; background: var(--gold); color: var(--bg-primary);
+      font-size: 0.73rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;
+      border: none; cursor: pointer; transition: all 0.35s var(--ease-smooth); font-family: var(--font-body);
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,169,110,0.2); }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      padding: 0.8rem 1.75rem; background: transparent; color: var(--gold);
+      font-size: 0.73rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase;
+      border: 1px solid var(--gold-dim); cursor: pointer; transition: all 0.35s var(--ease-smooth); font-family: var(--font-body);
+    }
+    .btn-outline:hover { background: rgba(201,169,110,0.08); border-color: var(--gold); }
+    .btn-primary svg, .btn-outline svg { width: 16px; height: 16px; fill: currentColor; }
+
+    .contact-map { border: 1px solid var(--border-subtle); overflow: hidden; aspect-ratio: 4/3; transition: border-color 0.4s; }
+    .contact-map iframe { width: 100%; height: 100%; border: 0; filter: var(--map-filter); transition: filter 0.6s; }
+    .contact-map:hover iframe { filter: var(--map-filter-hover); }
+    @media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; } }
+
+    /* ══════════════════════════════
+       FOOTER
+       ══════════════════════════════ */
+    .site-footer { border-top: 1px solid var(--border-subtle); padding: 2.5rem 0; transition: var(--transition-theme); }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-copy { font-size: 0.72rem; color: var(--text-muted); letter-spacing: 0.1em; }
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-links a { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); transition: color 0.3s; }
+    .footer-links a:hover { color: var(--gold); }
+    .back-top {
+      background: none; border: 1px solid var(--border-medium); color: var(--gold);
+      width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s;
+    }
+    .back-top:hover { background: var(--gold); color: var(--bg-primary); }
+
+    /* ── Grain Overlay ── */
+    body::after {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999;
+      opacity: var(--grain-opacity);
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /* ── Mobile polish ── */
+    @media (max-width: 480px) {
+      .hero-stats { gap: 1.25rem; }
+      .contact-actions { flex-direction: column; }
+      .contact-actions a { width: 100%; justify-content: center; }
+      .footer-inner { flex-direction: column; text-align: center; }
+    }
   </style>
 </head>
-<body class="overflow-x-hidden">
-  <!-- Header -->
-  <header class="fixed top-0 left-0 w-full bg-white/95 dark:bg-[#0B1220]/95 backdrop-blur-md z-20 shadow relative">
-    <div class="max-w-7xl mx-auto flex justify-between items-center px-4 md:px-6 py-4 text-slate-900 dark:text-slate-100">
-      <div class="flex items-center gap-3">
-        <img src="assets/img/Logo.jpeg" alt="Planum Group logo" class="h-10 w-10 object-contain">
-        <h1 class="text-2xl font-bold text-[color:var(--text-light)] dark:text-[color:var(--accent)]">PLANUM GROUP</h1>
-      </div>
-      <nav class="flex items-center space-x-6">
-        <ul class="hidden md:flex space-x-8 text-lg">
-          <li><a href="#hero" class="text-slate-900 dark:text-slate-100 hover:text-[color:var(--accent)] transition">Home</a></li>
-          <li><a href="#projects" class="text-slate-900 dark:text-slate-100 hover:text-[color:var(--accent)] transition">Projects</a></li>
-          <li><a href="#about" class="text-slate-900 dark:text-slate-100 hover:text-[color:var(--accent)] transition">About</a></li>
-          <li><a href="#contact" class="text-slate-900 dark:text-slate-100 hover:text-[color:var(--accent)] transition">Contact</a></li>
+<body>
+
+  <!-- ═══ HEADER ═══ -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+      <a href="#" class="logo-group">
+        <img src="assets/img/Logo.jpeg" alt="Planum Group" class="logo-img">
+        <span class="logo-text">PLANUM</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a href="#about">Leadership</a></li>
+          <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+          <li><button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button></li>
         </ul>
-        <button id="themeToggle" class="theme-toggle ml-2 md:ml-6">🌙</button>
-        <button id="mobileMenuBtn" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-full border border-gray-300 dark:border-gray-600 hover:border-[color:var(--accent)] transition" aria-label="Open menu" aria-expanded="false">
-          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M3 6h18v2H3zM3 11h18v2H3zM3 16h18v2H3z"/>
-          </svg>
-        </button>
       </nav>
-    </div>
-    <div id="mobileMenu" class="md:hidden hidden absolute top-full left-0 w-full bg-white dark:bg-[#0B1220] border-t border-gray-200 dark:border-gray-700 shadow-lg">
-      <div class="px-6 py-5 flex flex-col gap-4 text-lg">
-        <a href="#hero" class="text-slate-900 dark:text-slate-100 hover:text-[color:var(--accent)] transition">Home</a>
-        <a href="#projects" class="text-slate-900 dark:text-slate-100 hover:text-[color:var(--accent)] transition">Projects</a>
-        <a href="#about" class="text-slate-900 dark:text-slate-100 hover:text-[color:var(--accent)] transition">About</a>
-        <a href="#contact" class="text-slate-900 dark:text-slate-100 hover:text-[color:var(--accent)] transition">Contact</a>
+      <div style="display:flex;align-items:center;gap:0.75rem;">
+        <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle theme" style="display:none;">🌙</button>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </div>
   </header>
-  <div id="menuBackdrop" class="hidden fixed inset-0 bg-black/50 z-10"></div>
 
-  <!-- Hero Section -->
-  <section id="hero" class="min-h-screen grid md:grid-cols-2 items-center relative overflow-hidden py-10 md:py-0">
-    <div class="z-10 px-6 md:px-16" data-aos="fade-right">
-      <h2 class="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4">PLANUM GROUP</h2>
-      <p class="text-lg sm:text-xl md:text-2xl text-[color:var(--accent)] font-medium mb-4">Building spaces that inspire and endure.</p>
-      <p class="max-w-md mb-8 text-gray-700 dark:text-gray-300">Since 1996, we’ve shaped skylines with thoughtful design and precision — delivering over 500 projects across residential, commercial, retail, and healthcare spaces.</p>
-      <button id="exploreBtn" class="bg-[color:var(--accent)] text-white px-8 py-3 rounded-full font-semibold hover:bg-[#1E293B] hover:text-white transition">Explore Our Work</button>
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-close" id="mobileClose">&times;</button>
+    <a href="#projects" onclick="closeMobile()">Projects</a>
+    <a href="#services" onclick="closeMobile()">Services</a>
+    <a href="#process" onclick="closeMobile()">Process</a>
+    <a href="#about" onclick="closeMobile()">Leadership</a>
+    <a href="#contact" onclick="closeMobile()">Contact</a>
+    <button class="theme-toggle mobile-theme-btn" id="themeToggleMenu" aria-label="Toggle theme">🌙</button>
+  </div>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <div class="hero-slide active"><img src="assets/img/Residential/R1.jpg" alt="Residential architecture"></div>
+      <div class="hero-slide"><img src="assets/img/commercial/C1.jpg" alt="Commercial architecture"></div>
+      <div class="hero-slide"><img src="assets/img/Residential/R2.jpg" alt="Residential design"></div>
+      <div class="hero-slide"><img src="assets/img/commercial/C3.jpg" alt="Commercial space"></div>
+      <div class="hero-slide"><img src="assets/img/commercial/C2.jpg" alt="Commercial project"></div>
+      <div class="hero-overlay"></div>
     </div>
-    <div class="relative w-full h-72 sm:h-80 md:h-full mt-8 md:mt-0">
-      <img class="hero-image active" src="assets/img/Residential/R1.jpg" alt="Hero 1">
-      <img class="hero-image" src="assets/img/Residential/R2.jpg" alt="Hero 2">
-      <img class="hero-image" src="assets/img/commercial/C1.jpg" alt="Hero 3">
-      <img class="hero-image" src="assets/img/commercial/C2.jpg" alt="Hero 4">
-      <img class="hero-image" src="assets/img/commercial/C3.jpg" alt="Hero 5">
+    <div class="hero-content container">
+      <div class="hero-tag reveal">Architecture &bull; Interiors &bull; Developers</div>
+      <h1 class="hero-title reveal reveal-d1">Spaces that<br><em>inspire</em> &amp; endure</h1>
+      <p class="hero-subtitle reveal reveal-d2">Shaping Hyderabad's skyline since 1996 with thoughtful design, precision engineering, and an unwavering commitment to craft.</p>
+      <div class="hero-stats reveal reveal-d3">
+        <div>
+          <div class="hero-stat-num"><span class="countup" data-target="500">0</span>+</div>
+          <div class="hero-stat-label">Projects Delivered</div>
+        </div>
+        <div>
+          <div class="hero-stat-num"><span class="countup" data-target="28">0</span>+</div>
+          <div class="hero-stat-label">Years of Design</div>
+        </div>
+        <div>
+          <div class="hero-stat-num"><span class="countup" data-target="120">0</span>+</div>
+          <div class="hero-stat-label">Happy Clients</div>
+        </div>
+      </div>
     </div>
+    <div class="hero-scroll">Scroll</div>
   </section>
 
-  <!-- Projects Section -->
-  <section id="projects" class="py-16 md:py-20">
-    <div class="max-w-7xl mx-auto px-6">
-      <h3 class="text-4xl font-bold section-title mb-12">Our Projects</h3>
-
-      <div class="grid md:grid-cols-2 gap-8 md:gap-10 mb-12 md:mb-20 items-center">
-        <div data-aos="fade-right">
-          <a href="residential.html" class="inline-flex items-center gap-2 text-3xl font-semibold mb-4 text-[color:var(--accent)] hover:underline">
-            Residential Projects
-          </a>
-          <p>Elegant, livable spaces that balance functionality with beauty — designed to bring comfort, style, and sustainability together.</p>
-          <a href="residential.html" class="inline-block mt-4 text-[color:var(--accent)] font-semibold hover:underline">View Residential Gallery</a>
-        </div>
-        <div data-aos="fade-left"><div class="project-slider" data-category="residential"></div></div>
-      </div>
-
-      <div class="grid md:grid-cols-2 gap-8 md:gap-10 mb-12 md:mb-20 items-center">
-        <div class="md:order-2" data-aos="fade-left">
-          <a href="commercial.html" class="inline-flex items-center gap-2 text-3xl font-semibold mb-4 text-[color:var(--accent)] hover:underline">
-            Commercial Spaces
-          </a>
-          <p>Dynamic workplaces and public environments designed for collaboration, impact, and lasting impression.</p>
-          <a href="commercial.html" class="inline-block mt-4 text-[color:var(--accent)] font-semibold hover:underline">View Commercial Gallery</a>
-        </div>
-        <div class="md:order-1" data-aos="fade-right"><div class="project-slider" data-category="commercial"></div></div>
-      </div>
-
-      <div class="grid md:grid-cols-2 gap-8 md:gap-10 items-center">
-        <div data-aos="fade-right">
-          <a href="interior.html" class="inline-flex items-center gap-2 text-3xl font-semibold mb-4 text-[color:var(--accent)] hover:underline">
-            Interior Designs
-          </a>
-          <p>Refined interiors that tell stories through textures, materials, and spatial flow — blending art with purpose.</p>
-          <a href="interior.html" class="inline-block mt-4 text-[color:var(--accent)] font-semibold hover:underline">View Interior Gallery</a>
-        </div>
-        <div data-aos="fade-left"><div class="project-slider" data-category="interior"></div></div>
-      </div>
+  <!-- ═══ SERVICES ═══ -->
+  <section class="section" id="services">
+    <div class="container">
+      <div class="section-tag reveal">What We Do</div>
+      <h2 class="section-title reveal reveal-d1">Design disciplines<br>under one roof</h2>
+      <p class="section-desc reveal reveal-d2">From concept to completion, we bring together architecture, interiors, and development — ensuring every project is seamlessly executed.</p>
     </div>
-  </section>
-
-  <!-- About Section -->
-  <section id="about" class="py-20">
-    <div class="max-w-6xl mx-auto px-6 text-center">
-      <h3 class="text-4xl font-bold section-title mb-10 inline-block">About Us</h3>
-      <p class="max-w-3xl mx-auto mb-10" data-aos="fade-up">
-        <strong>Planum Group</strong> was established in 1996 and has since completed over 500 projects spanning residential, commercial, retail, and healthcare spaces.
-      </p>
-
-      <h4 class="text-3xl font-semibold mb-8 text-[color:var(--accent)] text-center">Leadership & Team</h4>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center">
-        <div class="team-card w-full max-w-sm text-center p-6 bg-[color:var(--card-light)] dark:bg-[color:var(--card-dark)] text-slate-900 dark:text-slate-100 rounded-lg shadow-md" data-aos="fade-up">
-          <img src="assets/img/Leadership/Basheer.jpeg" class="w-40 h-40 object-contain bg-[#0B1220]/5 dark:bg-white/5 mx-auto rounded-full mb-4 p-1">
-          <h5 class="text-2xl font-semibold mb-2">MD Bashir</h5>
-          <p class="text-[color:var(--accent)] mb-2">Founder & Chief Architect</p>
-          <p class="text-slate-600 dark:text-slate-300">“Planum Group was built on the belief that architecture should evoke emotion, not just admiration.”</p>
+    <div class="container">
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <div class="service-num">01</div>
+          <svg class="service-icon" viewBox="0 0 44 44"><path d="M6 38V12L22 4l16 8v26"/><path d="M6 12h32"/><path d="M14 38V22h16v16"/><path d="M22 22v16"/></svg>
+          <h3 class="service-title">Architecture</h3>
+          <p class="service-desc">Residential, commercial, retail, and healthcare buildings — designed with structural integrity, environmental sensitivity, and timeless visual character.</p>
         </div>
-        <div class="team-card w-full max-w-sm text-center p-6 bg-[color:var(--card-light)] dark:bg-[color:var(--card-dark)] text-slate-900 dark:text-slate-100 rounded-lg shadow-md" data-aos="fade-up">
-          <img src="assets/img/Leadership/Anees.jpeg" class="w-40 h-40 object-contain bg-[#0B1220]/5 dark:bg-white/5 mx-auto rounded-full mb-4 p-1">
-          <h5 class="text-2xl font-semibold mb-2">Anees Ahmed</h5>
-          <p class="text-[color:var(--accent)] mb-2">CEO</p>
-          <p class="text-slate-600 dark:text-slate-300">“Leading with clarity and craftsmanship, we turn ambitious ideas into buildable, timeless spaces.”</p>
+        <div class="service-card reveal reveal-d1">
+          <div class="service-num">02</div>
+          <svg class="service-icon" viewBox="0 0 44 44"><rect x="4" y="4" width="36" height="36" rx="2"/><path d="M4 16h36"/><circle cx="22" cy="28" r="6"/><path d="M18 24l4 4 4-4"/></svg>
+          <h3 class="service-title">Interior Design</h3>
+          <p class="service-desc">Refined spaces that balance aesthetics with function — where materials, textures, lighting, and spatial flow converge into cohesive, livable environments.</p>
         </div>
-        <div class="team-card w-full max-w-sm text-center p-6 bg-[color:var(--card-light)] dark:bg-[color:var(--card-dark)] text-slate-900 dark:text-slate-100 rounded-lg shadow-md" data-aos="fade-up">
-          <img src="assets/img/Leadership/Azeem.png" class="w-40 h-40 object-contain bg-[#0B1220]/5 dark:bg-white/5 mx-auto rounded-full mb-4 p-1">
-          <h5 class="text-2xl font-semibold mb-2">Azeem Ahmed</h5>
-          <p class="text-[color:var(--accent)] mb-2">Director</p>
-          <p class="text-slate-600 dark:text-slate-300">“From planning to execution, we focus on details, timelines, and quality—so every project delivers with confidence.”</p>
+        <div class="service-card reveal reveal-d2">
+          <div class="service-num">03</div>
+          <svg class="service-icon" viewBox="0 0 44 44"><path d="M8 38V14l14-8 14 8v24"/><path d="M8 14l14 8 14-8"/><path d="M22 22v16"/><path d="M14 30h4"/><path d="M26 30h4"/></svg>
+          <h3 class="service-title">Development</h3>
+          <p class="service-desc">End-to-end project management from land acquisition through construction — turning architectural visions into built reality on time and on budget.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Testimonies & Impact -->
-  <section id="testimonies" class="py-20">
-    <div class="max-w-7xl mx-auto px-6">
-      <h3 class="text-4xl font-bold section-title mb-12">Testimonies & Impact</h3>
+  <div class="divider"></div>
 
-      <div class="grid md:grid-cols-3 gap-8 mb-16 text-center">
-        <div class="testimony-card p-6 rounded-lg bg-white text-slate-900 dark:bg-[#111827] dark:text-slate-100 shadow-md" data-aos="fade-up">
-          <p class="text-5xl font-extrabold text-[color:var(--accent)]">
-            <span class="countup" data-count="500" data-suffix="+" data-duration="2200">1</span>
-          </p>
-          <p class="mt-2 text-lg font-semibold">Completed Projects</p>
-          <p class="text-sm text-slate-600 dark:text-slate-300">Residential, commercial, retail, and healthcare.</p>
+  <!-- ═══ PROJECTS ═══ -->
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="section-tag reveal">Portfolio</div>
+      <h2 class="section-title reveal reveal-d1">Selected work</h2>
+      <p class="section-desc reveal reveal-d2">A curated look at projects across residential, commercial, and interior disciplines — each reflecting our commitment to thoughtful design.</p>
+
+      <!-- Residential -->
+      <div class="project-row reveal" style="margin-top: 3.5rem;">
+        <div class="project-visual">
+          <div class="project-slider-wrap" data-category="residential"></div>
         </div>
-        <div class="testimony-card p-6 rounded-lg bg-white text-slate-900 dark:bg-[#111827] dark:text-slate-100 shadow-md" data-aos="fade-up" data-aos-delay="100">
-          <p class="text-5xl font-extrabold text-[color:var(--accent)]">
-            <span class="countup" data-count="120" data-suffix="+" data-duration="2000">1</span>
-          </p>
-          <p class="mt-2 text-lg font-semibold">Happy Clients</p>
-          <p class="text-sm text-slate-600 dark:text-slate-300">Trusted by teams and homeowners across Hyderabad.</p>
-        </div>
-        <div class="testimony-card p-6 rounded-lg bg-white text-slate-900 dark:bg-[#111827] dark:text-slate-100 shadow-md" data-aos="fade-up" data-aos-delay="200">
-          <p class="text-5xl font-extrabold text-[color:var(--accent)]">
-            <span class="countup" data-count="28" data-suffix="+" data-duration="1600">1</span>
-          </p>
-          <p class="mt-2 text-lg font-semibold">Years of Design</p>
-          <p class="text-sm text-slate-600 dark:text-slate-300">Crafted spaces that stand the test of time.</p>
+        <div class="project-info">
+          <div class="project-category">Residential</div>
+          <h3 class="project-name">Homes crafted for comfort &amp; elegance</h3>
+          <p class="project-desc">Elegant, livable spaces that balance functionality with beauty — designed to bring comfort, style, and sustainability to everyday living.</p>
+          <a href="residential.html" class="project-link">View Gallery <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="testimony-card p-6 rounded-lg bg-white text-slate-900 dark:bg-[#111827] dark:text-slate-100 shadow-md" data-aos="fade-up">
-          <p class="text-sm uppercase tracking-widest text-[color:var(--accent)] mb-2">Residential Villa</p>
-          <p class="mb-4 text-slate-700 dark:text-slate-300">“Planum Group translated our vision into a warm, functional home with incredible attention to detail.”</p>
-          <p class="font-semibold">— Pearl Constructions, Hyderabad</p>
+      <!-- Commercial -->
+      <div class="project-row reverse reveal">
+        <div class="project-visual">
+          <div class="project-slider-wrap" data-category="commercial"></div>
         </div>
-        <div class="testimony-card p-6 rounded-lg bg-white text-slate-900 dark:bg-[#111827] dark:text-slate-100 shadow-md" data-aos="fade-up" data-aos-delay="100">
-          <p class="text-sm uppercase tracking-widest text-[color:var(--accent)] mb-2">Corporate Office</p>
-          <p class="mb-4 text-slate-700 dark:text-slate-300">“The workspace feels premium, productive, and welcoming — exactly what we needed for our team.”</p>
-          <p class="font-semibold">— Saqlain Hospital's</p>
+        <div class="project-info">
+          <div class="project-category">Commercial</div>
+          <h3 class="project-name">Workplaces designed for impact</h3>
+          <p class="project-desc">Dynamic workplaces and public environments designed for collaboration, productivity, and lasting impression — from hospitals to corporate headquarters.</p>
+          <a href="commercial.html" class="project-link">View Gallery <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
-        <div class="testimony-card p-6 rounded-lg bg-white text-slate-900 dark:bg-[#111827] dark:text-slate-100 shadow-md" data-aos="fade-up" data-aos-delay="200">
-          <p class="text-sm uppercase tracking-widest text-[color:var(--accent)] mb-2">Retail & Interiors</p>
-          <p class="mb-4 text-slate-700 dark:text-slate-300">“They balanced aesthetics with practical flow, and our customers feel it every day.”</p>
-          <p class="font-semibold">— Amit, Amin</p>
+      </div>
+
+      <!-- Interior -->
+      <div class="project-row reveal">
+        <div class="project-visual">
+          <div class="project-slider-wrap" data-category="interior"></div>
+        </div>
+        <div class="project-info">
+          <div class="project-category">Interiors</div>
+          <h3 class="project-name">Refined spaces that tell stories</h3>
+          <p class="project-desc">Interiors that weave together textures, materials, and spatial flow — blending art with purpose to create environments that feel deeply personal.</p>
+          <a href="interior.html" class="project-link">View Gallery <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Contact Section -->
-  <section id="contact" class="py-20">
-    <div class="max-w-6xl mx-auto px-6">
-      <h3 class="text-4xl font-bold section-title mb-10">Contact Us</h3>
-      <div class="grid gap-12">
-        <div data-aos="fade-right">
-          <h4 class="text-2xl font-semibold mb-4 text-[color:var(--accent)]">Get in Touch</h4>
-          <p>PLANUM GROUP</p>
-          <p>Hyderabad, Telangana, India</p>
-          <p class="mt-2">Phone: <a href="tel:+918977473757" class="text-[color:var(--accent)]">+91 8977473757 / +91 9849038043</a></p>
-          <p>Email: <a href="mailto:info.planumgroup@gmail.com" class="text-[color:var(--accent)]">info.planumgroup@gmail.com</a></p>
-                <div class="mt-6">
-                    <iframe
-                        class="w-full h-64 sm:h-72 rounded-lg"
-                        src="https://www.google.com/maps?q=PLANUM+GROUP&output=embed"
-                        style="border:0;"
-                        allowfullscreen=""
-                        loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
-                </div>
+  <!-- ═══ IMPACT ═══ -->
+  <section class="impact-section">
+    <div class="impact-grid">
+      <div class="impact-item reveal">
+        <div class="impact-num"><span class="countup" data-target="500">0</span>+</div>
+        <div class="impact-label">Projects Completed</div>
+      </div>
+      <div class="impact-item reveal reveal-d1">
+        <div class="impact-num"><span class="countup" data-target="28">0</span>+</div>
+        <div class="impact-label">Years of Excellence</div>
+      </div>
+      <div class="impact-item reveal reveal-d2">
+        <div class="impact-num"><span class="countup" data-target="120">0</span>+</div>
+        <div class="impact-label">Satisfied Clients</div>
+      </div>
+      <div class="impact-item reveal reveal-d3">
+        <div class="impact-num"><span class="countup" data-target="4">0</span></div>
+        <div class="impact-label">Sectors Served</div>
+      </div>
+    </div>
+  </section>
 
-          <div class="mt-10">
-            <h4 class="text-2xl font-semibold mb-4 text-[color:var(--accent)]">Connect</h4>
-            <div class="flex flex-col sm:flex-row gap-4">
-              <a
-                href="https://wa.me/918977473757"
-                class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-[color:var(--accent)] text-white font-semibold hover:bg-[#1E293B] transition"
-                aria-label="Chat on WhatsApp"
-              >
-                <svg class="w-5 h-5" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
-                  <path d="M19.11 17.19c-.27-.14-1.6-.79-1.85-.88-.25-.09-.44-.14-.62.14-.18.27-.71.88-.87 1.06-.16.18-.32.2-.59.07-.27-.14-1.14-.42-2.18-1.34-.81-.72-1.36-1.61-1.52-1.88-.16-.27-.02-.41.12-.55.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.62-1.5-.85-2.05-.22-.53-.44-.46-.62-.46h-.53c-.18 0-.48.07-.73.34-.25.27-.96.94-.96 2.3s.98 2.67 1.12 2.85c.14.18 1.92 2.93 4.65 4.11.65.28 1.16.45 1.55.58.65.21 1.24.18 1.71.11.52-.08 1.6-.65 1.83-1.27.23-.62.23-1.16.16-1.27-.07-.11-.25-.18-.52-.32z"/>
-                  <path d="M16 3C9.37 3 4 8.37 4 15c0 2.12.55 4.11 1.52 5.84L4 29l8.33-1.48A11.9 11.9 0 0 0 16 27c6.63 0 12-5.37 12-12S22.63 3 16 3zm0 22a10 10 0 0 1-3.39-.58l-.24-.09-4.95.88.94-4.84-.16-.25A10 10 0 1 1 16 25z"/>
-                </svg>
-                Chat on WhatsApp
-              </a>
-              <a
-                href="https://www.instagram.com/_planumgroup_/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full border border-[color:var(--accent)] text-[color:var(--accent)] font-semibold hover:bg-[color:var(--accent)] hover:text-white transition"
-                aria-label="Visit Instagram"
-              >
-                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M12 7.2A4.8 4.8 0 1 0 16.8 12 4.8 4.8 0 0 0 12 7.2zm0 7.9A3.1 3.1 0 1 1 15.1 12 3.1 3.1 0 0 1 12 15.1zm6.2-8.2a1.1 1.1 0 1 1-1.1-1.1 1.1 1.1 0 0 1 1.1 1.1z"/>
-                  <path d="M16.9 3H7.1A4.1 4.1 0 0 0 3 7.1v9.8A4.1 4.1 0 0 0 7.1 21h9.8a4.1 4.1 0 0 0 4.1-4.1V7.1A4.1 4.1 0 0 0 16.9 3zm2.4 13.9a2.4 2.4 0 0 1-2.4 2.4H7.1a2.4 2.4 0 0 1-2.4-2.4V7.1a2.4 2.4 0 0 1 2.4-2.4h9.8a2.4 2.4 0 0 1 2.4 2.4z"/>
-                </svg>
-                Instagram
-              </a>
-            </div>
+  <!-- ═══ PROCESS ═══ -->
+  <section class="section" id="process">
+    <div class="container">
+      <div class="section-tag reveal">How We Work</div>
+      <h2 class="section-title reveal reveal-d1">From vision<br>to built reality</h2>
+      <p class="section-desc reveal reveal-d2">Every project follows a disciplined yet creative process — ensuring precision at each stage without sacrificing imagination.</p>
+      <div class="process-steps">
+        <div class="process-step reveal"><div class="step-num">01</div><h4 class="step-title">Discover</h4><p class="step-desc">We begin with deep listening — understanding your aspirations, constraints, site conditions, and lifestyle to frame the design brief.</p></div>
+        <div class="process-step reveal reveal-d1"><div class="step-num">02</div><h4 class="step-title">Design</h4><p class="step-desc">Conceptual sketches evolve into detailed plans, 3D visualizations, and material palettes — refined through collaborative dialogue.</p></div>
+        <div class="process-step reveal reveal-d2"><div class="step-num">03</div><h4 class="step-title">Develop</h4><p class="step-desc">Engineering, approvals, and construction documentation are prepared with precision to ensure buildability and regulatory compliance.</p></div>
+        <div class="process-step reveal reveal-d3"><div class="step-num">04</div><h4 class="step-title">Deliver</h4><p class="step-desc">On-site supervision and quality control through to handover — ensuring every detail matches the design intent.</p></div>
+      </div>
+    </div>
+  </section>
 
-            <div class="mt-6 grid gap-4">
-              <div class="rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 bg-[color:var(--card-light)] dark:bg-[color:var(--card-dark)]">
-                <iframe
-                  title="Planum Group Instagram"
-                  src="https://www.instagram.com/_planumgroup_/embed"
-                  class="w-full h-72 sm:h-80"
-                  loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
-              </div>
-              <div class="p-4 rounded-lg border border-gray-200 dark:border-gray-700 bg-[color:var(--card-light)] dark:bg-[color:var(--card-dark)]">
-                <p class="font-semibold mb-2 text-[color:var(--accent)]">Instagram Preview</p>
-                <p class="text-sm text-gray-600 dark:text-gray-300 mb-3">If the embed doesn’t load, use the link below to view our profile.</p>
-                <a
-                  href="https://www.instagram.com/_planumgroup_/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center gap-2 text-[color:var(--accent)] font-semibold hover:underline"
-                >
-                  Visit @_planumgroup_
-                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14z"/>
-                    <path d="M5 5h6V3H3v8h2z"/>
-                    <path d="M5 19h14V9h2v12H3V7h2z"/>
-                  </svg>
-                </a>
-              </div>
-            </div>
+  <div class="divider"></div>
+
+  <!-- ═══ LEADERSHIP ═══ -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-tag reveal">Leadership</div>
+      <h2 class="section-title reveal reveal-d1">The minds<br>behind Planum</h2>
+      <p class="section-desc reveal reveal-d2">Founded in 1996, Planum Group has been built on the belief that architecture should evoke emotion — not just admiration.</p>
+      <div class="team-grid">
+        <div class="team-member reveal">
+          <div class="team-photo-wrap"><img src="assets/img/Leadership/Basheer.jpeg" alt="MD Bashir"></div>
+          <h4 class="team-name">MD Bashir</h4>
+          <p class="team-role">Founder &amp; Chief Architect</p>
+          <p class="team-quote">"Architecture should evoke emotion, not just admiration."</p>
+        </div>
+        <div class="team-member reveal reveal-d1">
+          <div class="team-photo-wrap"><img src="assets/img/Leadership/Anees.jpeg" alt="Anees Ahmed"></div>
+          <h4 class="team-name">Anees Ahmed</h4>
+          <p class="team-role">Chief Executive Officer</p>
+          <p class="team-quote">"We turn ambitious ideas into buildable, timeless spaces."</p>
+        </div>
+        <div class="team-member reveal reveal-d2">
+          <div class="team-photo-wrap"><img src="assets/img/Leadership/Azeem.png" alt="Azeem Ahmed"></div>
+          <h4 class="team-name">Azeem Ahmed</h4>
+          <p class="team-role">Director</p>
+          <p class="team-quote">"Details, timelines, and quality — so every project delivers with confidence."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══ TESTIMONIALS ═══ -->
+  <section class="section" id="testimonials">
+    <div class="container">
+      <div class="section-tag reveal">Client Words</div>
+      <h2 class="section-title reveal reveal-d1">Trusted by those<br>who build with purpose</h2>
+    </div>
+    <div class="container">
+      <div class="testimonials-grid">
+        <div class="testimonial-card reveal">
+          <div class="testimonial-type">Residential Villa</div>
+          <p class="testimonial-text">"Planum Group translated our vision into a warm, functional home with incredible attention to detail."</p>
+          <p class="testimonial-author">— Pearl Constructions, Hyderabad</p>
+        </div>
+        <div class="testimonial-card reveal reveal-d1">
+          <div class="testimonial-type">Corporate Office</div>
+          <p class="testimonial-text">"The workspace feels premium, productive, and welcoming — exactly what we needed for our team."</p>
+          <p class="testimonial-author">— Saqlain Hospital's</p>
+        </div>
+        <div class="testimonial-card reveal reveal-d2">
+          <div class="testimonial-type">Retail &amp; Interiors</div>
+          <p class="testimonial-text">"They balanced aesthetics with practical flow, and our customers feel it every day."</p>
+          <p class="testimonial-author">— Amit, Amin</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CONTACT ═══ -->
+  <section class="section contact-section" id="contact">
+    <div class="container">
+      <div class="section-tag reveal">Start a Conversation</div>
+      <h2 class="section-title reveal reveal-d1">Let's build<br>something remarkable</h2>
+      <div class="contact-grid">
+        <div class="reveal reveal-d2">
+          <div class="contact-detail">
+            <div class="contact-label">Studio</div>
+            <div class="contact-value">Planum Group<br>Hyderabad, Telangana, India</div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-label">Phone</div>
+            <div class="contact-value"><a href="tel:+918977473757">+91 897 747 3757</a><br><a href="tel:+919849038043">+91 984 903 8043</a></div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-label">Email</div>
+            <div class="contact-value"><a href="mailto:info.planumgroup@gmail.com">info.planumgroup@gmail.com</a></div>
+          </div>
+          <div class="contact-actions">
+            <a href="https://wa.me/918977473757" class="btn-primary" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+              WhatsApp
+            </a>
+            <a href="https://www.instagram.com/_planumgroup_/" class="btn-outline" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><path d="M12 7.2A4.8 4.8 0 1 0 16.8 12 4.8 4.8 0 0 0 12 7.2zm0 7.9A3.1 3.1 0 1 1 15.1 12 3.1 3.1 0 0 1 12 15.1zm6.2-8.2a1.1 1.1 0 1 1-1.1-1.1 1.1 1.1 0 0 1 1.1 1.1z"/><path d="M16.9 3H7.1A4.1 4.1 0 0 0 3 7.1v9.8A4.1 4.1 0 0 0 7.1 21h9.8a4.1 4.1 0 0 0 4.1-4.1V7.1A4.1 4.1 0 0 0 16.9 3zm2.4 13.9a2.4 2.4 0 0 1-2.4 2.4H7.1a2.4 2.4 0 0 1-2.4-2.4V7.1a2.4 2.4 0 0 1 2.4-2.4h9.8a2.4 2.4 0 0 1 2.4 2.4z"/></svg>
+              Instagram
+            </a>
+            <a href="mailto:info.planumgroup@gmail.com" class="btn-outline">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+              Email Us
+            </a>
           </div>
         </div>
+        <div class="contact-map reveal reveal-d3">
+          <iframe src="https://www.google.com/maps?q=PLANUM+GROUP+Hyderabad&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="bg-white dark:bg-[#0F172A] text-gray-600 dark:text-gray-400 py-6">
-    <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
-      <p>&copy; <span id="year"></span> PLANUM GROUP. All rights reserved.</p>
-      <button id="backToTop" class="border border-gray-400 px-4 py-2 rounded hover:bg-[color:var(--accent)] hover:text-white transition">Back to Top</button>
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-copy">&copy; <span id="footerYear"></span> Planum Group. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="https://www.instagram.com/_planumgroup_/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://wa.me/918977473757" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+      <button class="back-top" id="backToTop" aria-label="Back to top">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+      </button>
     </div>
   </footer>
 
-  <!-- Scripts -->
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+  <!-- ═══ SCRIPTS ═══ -->
   <script>
-    AOS.init({ duration: 1000, once: true });
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    document.getElementById('backToTop').onclick = () => gsap.to(window, {duration: 1, scrollTo: 0});
-    document.getElementById('exploreBtn').onclick = () => gsap.to(window, {duration: 1, scrollTo: '#projects'});
-
-    const toggleBtn = document.getElementById('themeToggle');
+    /* ── Theme Toggle System ── */
     const root = document.documentElement;
-    const saved = localStorage.getItem('theme');
-    if (saved === 'dark') { root.classList.add('dark'); toggleBtn.textContent = '🌞'; }
-    toggleBtn.onclick = () => {
-      root.classList.toggle('dark');
-      const dark = root.classList.contains('dark');
-      toggleBtn.textContent = dark ? '🌞' : '🌙';
-      localStorage.setItem('theme', dark ? 'dark' : 'light');
-    };
+    const toggleBtns = [
+      document.getElementById('themeToggle'),
+      document.getElementById('themeToggleMobile'),
+      document.getElementById('themeToggleMenu')
+    ].filter(Boolean);
 
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const menuBackdrop = document.getElementById('menuBackdrop');
-    const openMobileMenu = () => {
-      if (!mobileMenu || !menuBackdrop) return;
-      mobileMenu.classList.remove('hidden');
-      menuBackdrop.classList.remove('hidden');
-      document.body.classList.add('overflow-hidden');
-      mobileMenuBtn?.setAttribute('aria-expanded', 'true');
-    };
-    const closeMobileMenu = () => {
-      if (!mobileMenu || !menuBackdrop) return;
-      mobileMenu.classList.add('hidden');
-      menuBackdrop.classList.add('hidden');
-      document.body.classList.remove('overflow-hidden');
-      mobileMenuBtn?.setAttribute('aria-expanded', 'false');
-    };
-    if (mobileMenuBtn && mobileMenu && menuBackdrop) {
-      mobileMenuBtn.addEventListener('click', () => {
-        const isHidden = mobileMenu.classList.contains('hidden');
-        if (isHidden) {
-          openMobileMenu();
-        } else {
-          closeMobileMenu();
-        }
-      });
-      mobileMenu.querySelectorAll('a').forEach((link) => {
-        link.addEventListener('click', closeMobileMenu);
-      });
-      menuBackdrop.addEventListener('click', closeMobileMenu);
-      window.addEventListener('resize', () => {
-        if (window.innerWidth >= 768) closeMobileMenu();
-      });
+    function setTheme(theme) {
+      root.setAttribute('data-theme', theme);
+      localStorage.setItem('planum-theme', theme);
+      const icon = theme === 'dark' ? '☀️' : '🌙';
+      toggleBtns.forEach(btn => btn.textContent = icon);
     }
 
-    // Hero slideshow
-    const heroImgs = document.querySelectorAll('.hero-image');
-    let hIndex = 0;
-    setInterval(() => {
-      heroImgs.forEach((img,i)=>img.classList.toggle('active',i===hIndex));
-      hIndex=(hIndex+1)%heroImgs.length;
-    },6000);
+    // Restore saved preference
+    const saved = localStorage.getItem('planum-theme');
+    if (saved) setTheme(saved);
 
-    // Project sliders
-    const sliders = {
-      residential:{folder:'assets/img/Residential/',files:['R1.jpg','R2.jpg','R3.jpg','R4.jpg','R5.jpg','R6.jpg']},
-      commercial:{folder:'assets/img/commercial/',files:['C1.jpg','C2.jpg','C3.jpg','C4.jpg','C5.jpg']},
-      interior:{folder:'assets/img/Interior/',files:[
-        '07eb5373-cd2f-4b6b-b93b-bf6173cc921c.jpg',
-        '1117ff83-0e5f-43c9-8537-009c9a6c77f5.jpg',
-        '12b263ee-3bc5-45bd-a371-d9ec5ca39664.jpg',
-        '1adca335-e410-4a36-8865-08b56d5c23dc.jpg',
-        '1cbc7dcf-43a5-4611-8a7c-8c5a6e19393c.jpg',
-        '1d97ea7e-b243-41fc-b547-ee6dd9ac6959.jpg',
-        '1fc2d0e6-8760-49f0-8ff3-fdc7c74337d1.jpg',
-        '20338540-9f02-4b21-ac44-5b7e7acd6807.jpg',
-        '2065866e-b157-4fb4-9861-c0c8cf2807ea.jpg',
-        '231dd2c9-b712-488c-aa9e-eb5b5647f95d.jpg',
-        '27124b37-d82b-48f0-a238-39f8b58bb9a9.jpg',
-        '2e3eb342-bcff-445a-bc21-ee1e75468725.jpg',
-        '30b3b199-d564-43c2-93ad-b6be0edeaae7.jpg',
-        '334f58c8-bbd6-4769-a250-51224ae8d86a.jpg',
-        '33ee9b17-dd37-460a-a368-3548e1f16b4c.jpg',
-        '3938e941-94a9-4d6c-8d87-b1cbcebc8068.jpg',
-        '3d34b755-dfd9-41ec-acac-3c59cce8e35f.jpg',
-        '410f2a72-6116-48e9-bbae-ba5f7e67a8af.jpg',
-        '474539fb-4db3-49eb-b807-6b9f55f349d6.jpg',
-        '485ecbd4-bfc2-4880-8101-4a2f050a06bd.jpg',
-        '4ac83036-db8f-4c3e-8d44-8537819a5f09.jpg',
-        '4e96ac01-c015-4471-a502-79632577f832.jpg',
-        '4f716db0-a906-4589-b588-528eef2c1652.jpg',
-        '58883e13-6158-4c68-aef2-fb975febe642.jpg',
-        '65219da3-0752-4aea-884c-aed9af125fb1.jpg',
-        '6776e701-7891-4159-aee6-a8ee100e84dc.jpg',
-        '6b36d99c-8c94-42e3-89f9-6bc2f36d10d1.jpg',
-        '72e2045a-d6ea-45f3-9e28-8fb09ab0ad81.jpg',
-        '74ebbcbb-9819-4dce-9b8c-351bf523fdce.jpg',
-        '77b8261e-3442-4ba6-8409-488f43c0c961.jpg',
-        '7be187e1-b06f-4079-b922-9b88cba44b24.jpg',
-        '7d8ec385-35d3-41ca-8d8e-a41231531a9f.jpg',
-        '7d996cd8-2e50-4abc-b25a-e14c44d783b5.jpg',
-        '84dd3ccf-5285-4e34-bf96-8b42e1188b7c.jpg',
-        '89608a01-aeaa-493b-a19c-3970053d963c.jpg',
-        '93cae720-5ac8-4895-8492-05225f025d1c.jpg',
-        '980ed623-328f-4157-9c86-5c54a5ce8f08.jpg',
-        '99a86693-43e2-4016-b788-957a8a56dfed.jpg',
-        '9a45747a-c782-4b84-ab4c-33bcbf2115cd.jpg',
-        'IMG_0348.JPG',
-        'IMG_0427.JPG',
-        'IMG_0463.JPG',
-        'IMG_0480.JPG',
-        'IMG_0481.JPG',
-        'IMG_0483.JPG',
-        'IMG_0484.JPG',
-        'IMG_0485.JPG',
-        'a51a3d45-458d-43b2-8530-d6c26722d7b7.jpg',
-        'a5264e63-749d-44ce-a2ed-ac800ab94bff.jpg',
-        'a9fb3748-9b5d-4ca9-9daa-a41a5358822e.jpg',
-        'b51e24f0-eaa6-4687-9d28-635618382940.jpg',
-        'b7458256-ba77-48c4-b207-78ecdc721141.jpg',
-        'ba53ad6c-11ce-4b3e-be9b-18f6e1fabc0b.jpg',
-        'bf335e6d-c779-4d27-ac75-69b04d25e174.jpg',
-        'ce290730-a2d8-4d73-9ec1-0bbb40b0e6dc.jpg',
-        'd06320fe-a701-499b-b574-bc45cf7e83a7.jpg',
-        'de4d2b29-c6da-457e-b55a-d38389cca052.jpg',
-        'de6e1049-ebea-4cab-980f-ea11e7f36fdf.jpg',
-        'eff38087-55cc-4bca-9acf-27a347cbfe2d.jpg',
-        'f2b744cd-d7c3-430f-a2a4-b4f6a6ebf4da.jpg',
-        'f7a06303-1670-44b2-ba4e-64b1f5de8c65.jpg'
-      ]}
-    };
-    document.querySelectorAll('.project-slider').forEach(s=>{
-      const c=s.dataset.category, cfg=sliders[c];
-      if(!cfg||!cfg.files.length){s.innerHTML='<div class=\"flex items-center justify-center h-full text-gray-400\">Images coming soon</div>';return;}
-      cfg.files.forEach(f=>{const img=document.createElement('img');img.src=cfg.folder+f;img.alt=f;img.className='project-slide';s.appendChild(img);});
-      let i=0;const imgs=s.querySelectorAll('img');imgs[0].classList.add('active');
-      setInterval(()=>{imgs[i].classList.remove('active');i=(i+1)%imgs.length;imgs[i].classList.add('active');},6000);
+    // Toggle on click
+    toggleBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const current = root.getAttribute('data-theme');
+        setTheme(current === 'dark' ? 'light' : 'dark');
+      });
     });
 
-    // Count-up stats on load
-    document.querySelectorAll('.countup').forEach((el) => {
-      const target = parseInt(el.dataset.count, 10);
-      const suffix = el.dataset.suffix || '';
-      const duration = parseInt(el.dataset.duration, 10) || 2000;
-      const start = 1;
-      const startTime = performance.now();
-      el.textContent = `${start}${suffix}`;
-      const step = (now) => {
-        const progress = Math.min((now - startTime) / duration, 1);
-        const value = Math.floor(start + (target - start) * progress);
-        el.textContent = `${value}${suffix}`;
-        if (progress < 1) requestAnimationFrame(step);
-      };
-      requestAnimationFrame(step);
+    // Show mobile toggle button on smaller screens
+    const mobileThemeBtn = document.getElementById('themeToggleMobile');
+    function checkMobileToggle() {
+      if (window.innerWidth <= 900) {
+        mobileThemeBtn.style.display = 'flex';
+      } else {
+        mobileThemeBtn.style.display = 'none';
+      }
+    }
+    checkMobileToggle();
+    window.addEventListener('resize', checkMobileToggle);
+
+    /* ── Header scroll ── */
+    const header = document.getElementById('siteHeader');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    /* ── Mobile menu ── */
+    const mobileToggle = document.getElementById('mobileToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileClose = document.getElementById('mobileClose');
+    mobileToggle.addEventListener('click', () => { mobileMenu.classList.add('open'); document.body.style.overflow = 'hidden'; });
+    mobileClose.addEventListener('click', closeMobile);
+    function closeMobile() { mobileMenu.classList.remove('open'); document.body.style.overflow = ''; }
+
+    /* ── Reveal on scroll (IntersectionObserver) ── */
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+    /* ── Hero slideshow ── */
+    const heroSlides = document.querySelectorAll('.hero-slide');
+    let heroIdx = 0;
+    setInterval(() => {
+      heroSlides[heroIdx].classList.remove('active');
+      heroIdx = (heroIdx + 1) % heroSlides.length;
+      heroSlides[heroIdx].classList.add('active');
+    }, 5000);
+
+    /* ── Project sliders (all images preserved) ── */
+    const sliderCfg = {
+      residential: {
+        folder: 'assets/img/Residential/',
+        files: ['R1.jpg','R2.jpg','R3.jpg','R4.jpg','R5.jpg','R6.jpg','R7.jpg','R8.jpg','R9.jpg','R10.jpg','R11.jpg','R12.jpg','R13.jpg','R14.jpg']
+      },
+      commercial: {
+        folder: 'assets/img/commercial/',
+        files: ['C1.jpg','C2.jpg','C3.jpg','C4.jpg','C5.jpg','C6.jpg','C7.jpg','C8.jpg','C9.jpg','C10.jpg']
+      },
+      interior: {
+        folder: 'assets/img/Interior/',
+        files: [
+          '07eb5373-cd2f-4b6b-b93b-bf6173cc921c.jpg',
+          '1117ff83-0e5f-43c9-8537-009c9a6c77f5.jpg',
+          '12b263ee-3bc5-45bd-a371-d9ec5ca39664.jpg',
+          '1adca335-e410-4a36-8865-08b56d5c23dc.jpg',
+          '1cbc7dcf-43a5-4611-8a7c-8c5a6e19393c.jpg',
+          '1d97ea7e-b243-41fc-b547-ee6dd9ac6959.jpg',
+          '1fc2d0e6-8760-49f0-8ff3-fdc7c74337d1.jpg',
+          '20338540-9f02-4b21-ac44-5b7e7acd6807.jpg',
+          '2065866e-b157-4fb4-9861-c0c8cf2807ea.jpg',
+          '231dd2c9-b712-488c-aa9e-eb5b5647f95d.jpg',
+          '27124b37-d82b-48f0-a238-39f8b58bb9a9.jpg',
+          '2e3eb342-bcff-445a-bc21-ee1e75468725.jpg'
+        ]
+      }
+    };
+    document.querySelectorAll('.project-slider-wrap').forEach(slider => {
+      const cat = slider.dataset.category;
+      const cfg = sliderCfg[cat];
+      if (!cfg) return;
+      cfg.files.forEach((f, i) => {
+        const img = document.createElement('img');
+        img.src = cfg.folder + f;
+        img.alt = cat + ' project ' + (i + 1);
+        img.loading = 'lazy';
+        if (i === 0) img.classList.add('active');
+        slider.appendChild(img);
+      });
+      let idx = 0;
+      const imgs = slider.querySelectorAll('img');
+      setInterval(() => {
+        imgs[idx].classList.remove('active');
+        idx = (idx + 1) % imgs.length;
+        imgs[idx].classList.add('active');
+      }, 4500);
+    });
+
+    /* ── Count-up animation ── */
+    const countObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const el = e.target;
+          const target = parseInt(el.dataset.target, 10);
+          const dur = 2000, start = performance.now();
+          const step = (now) => {
+            const p = Math.min((now - start) / dur, 1);
+            el.textContent = Math.floor(target * (1 - Math.pow(1 - p, 3)));
+            if (p < 1) requestAnimationFrame(step);
+          };
+          requestAnimationFrame(step);
+          countObs.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.countup').forEach(el => countObs.observe(el));
+
+    /* ── Footer year & back to top ── */
+    document.getElementById('footerYear').textContent = new Date().getFullYear();
+    document.getElementById('backToTop').addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   </script>
 </body>
